@@ -36,6 +36,26 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+            <!-- Jakarta Persistence API -->
+            <dependency>
+                <groupId>jakarta.persistence</groupId>
+                <artifactId>jakarta.persistence-api</artifactId>
+                <version>3.1.0</version>
+            </dependency>
+
+            <!-- Hibernate comme provider JPA -->
+            <dependency>
+                <groupId>org.hibernate.orm</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>6.2.7.Final</version>
+            </dependency>
+
+            <!-- Pilote JDBC Oracle -->
+            <dependency>
+                <groupId>com.oracle.database.jdbc</groupId>
+                <artifactId>ojdbc11</artifactId>
+                <version>21.9.0.0</version>
+            </dependency>
     </dependencies>
 
     <build>
