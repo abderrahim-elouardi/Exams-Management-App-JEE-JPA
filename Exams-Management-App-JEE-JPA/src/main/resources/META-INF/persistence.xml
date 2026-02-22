@@ -3,12 +3,14 @@
         <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
 
         <class>com.fsdm.examsmanagement.model.User</class>
-
         <class>com.fsdm.examsmanagement.model.Questioner</class>
         <class>com.fsdm.examsmanagement.model.QCM</class>
         <class>com.fsdm.examsmanagement.model.QShort</class>
         <class>com.fsdm.examsmanagement.model.QFillInBlank</class>
         <class>com.fsdm.examsmanagement.model.QAnswer</class>
+        <class>com.fsdm.examsmanagement.model.Student</class>
+        <class>com.fsdm.examsmanagement.model.Administrator</class>
+        <class>com.fsdm.examsmanagement.model.Exam</class>
 
         <properties>
             <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
