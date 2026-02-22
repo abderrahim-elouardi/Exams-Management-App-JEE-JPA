@@ -56,6 +56,13 @@
                 <artifactId>ojdbc11</artifactId>
                 <version>21.9.0.0</version>
             </dependency>
+        <!-- lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>RELEASE</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
