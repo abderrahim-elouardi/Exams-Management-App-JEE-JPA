@@ -41,4 +41,8 @@ public abstract class Questioner {
      */
     @Column(name = "responsetime")
     private Date responseTime;
+
+    @ManyToOne
+    @JoinColumn(name = "examenid")
+    private Exam exam;
 }

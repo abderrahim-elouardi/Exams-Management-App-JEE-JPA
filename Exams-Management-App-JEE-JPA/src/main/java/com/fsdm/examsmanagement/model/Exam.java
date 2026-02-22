@@ -30,5 +30,7 @@ public class Exam {
     @ManyToMany(mappedBy = "examList")
     private List<Student> studentList;
 
+    @OneToMany(mappedBy = "examen")
+    private List<Questioner> questions;
 
 }
