@@ -1,7 +1,6 @@
 package com.fsdm.examsmanagement.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -15,7 +14,13 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+/**
+ * Represents a multiple-choice question with a list of possible answers.
+ */
 public class QCM extends Questioner {
+    /**
+     * List of possible answers for this multiple-choice question.
+     */
     @OneToMany(mappedBy = "qcm")
     private List<QAnswer> answerList;
 }

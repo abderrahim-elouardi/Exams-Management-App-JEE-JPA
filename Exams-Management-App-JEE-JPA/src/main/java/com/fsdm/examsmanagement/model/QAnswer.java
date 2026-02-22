@@ -10,24 +10,35 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+/**
+ * Represents one possible answer for a multiple-choice question.
+ */
 public class QAnswer {
+    /**
+     * Unique identifier of the answer.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "qanswerid")
     private Long id;
 
+    /**
+     * Text content of the answer.
+     */
     @Column(name = "answer")
     private String answer;
 
+    /**
+     * Status of the answer (for example correct or incorrect).
+     */
     @Column(name = "status")
     private int status;
 
+    /**
+     * Multiple-choice question that owns this answer.
+     */
     @ManyToOne
     @JoinColumn(name = "qcmid")
     private QCM qcm;
-
-    @ManyToOne
-    @JoinColumn(name = "qshortid")
-    private QShort qShort;
 
 }
