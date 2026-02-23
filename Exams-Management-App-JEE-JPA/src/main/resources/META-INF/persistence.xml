@@ -16,6 +16,8 @@
             <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
+            <property name="jakarta.persistence.jdbc.user" value="monuser"/>
+            <property name="jakarta.persistence.jdbc.password" value="monpass"/>
         </properties>
     </persistence-unit>
 </persistence>

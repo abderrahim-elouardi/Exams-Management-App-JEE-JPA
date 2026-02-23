@@ -31,4 +31,6 @@ public class Exam {
     private List<Student> studentList;
 
 
+    @OneToMany(mappedBy = "exam")
+    private List<Questioner> questioner;
 }

@@ -1,8 +1,6 @@
 package com.fsdm.examsmanagement.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +18,12 @@ import java.util.List;
 public class Student extends User{
     private String cne;
 
-    @ManyToMany(mappedBy = "studentList")
+    @ManyToMany
+    @JoinTable(
+            name = "STUDENT_EXAM",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "exam_id")
+    )
     private List<Exam> examList;
 
 }
