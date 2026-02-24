@@ -2,6 +2,7 @@ package com.fsdm.examsmanagement.dao.Exam;
 
 import com.fsdm.examsmanagement.model.Exam;
 import com.fsdm.examsmanagement.model.Student;
+import com.fsdm.examsmanagement.model.User;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
@@ -53,5 +54,17 @@ public class ExamDAOImp implements ExamDAO {
     public List<Exam> findAll() {
         String jpql = "SELECT u FROM User u";
         return em.createQuery(jpql, Exam.class).getResultList();
+    }
+
+    @Override
+    public List<Exam> findPaginated(int page, int pageSize) {
+
+        return em.createQuery(
+                        "SELECT u FROM User u ORDER BY u.id",
+                        Exam.class
+                )
+                .setFirstResult((page - 1) * pageSize) // offset
+                .setMaxResults(pageSize)               // limit
+                .getResultList();
     }
 }

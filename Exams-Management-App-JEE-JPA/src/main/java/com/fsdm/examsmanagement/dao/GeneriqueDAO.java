@@ -9,4 +9,5 @@ public interface GeneriqueDAO <T,V>{
     public void delete(T element);
     public T findById(V id);
     public List<T> findAll();
+    public List<T> findPaginated(int page, int pageSize);
 }

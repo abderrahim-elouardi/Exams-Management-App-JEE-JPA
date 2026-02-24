@@ -1,6 +1,7 @@
 package com.fsdm.examsmanagement.dao.Student;
 
 import com.fsdm.examsmanagement.model.Student;
+import com.fsdm.examsmanagement.model.User;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
@@ -52,5 +53,16 @@ public class StudentDAOImp implements StudentDAO {
     public List<Student> findAll() {
         String jpql = "SELECT u FROM User u";
         return em.createQuery(jpql, Student.class).getResultList();
+    }
+
+    @Override
+    public List<Student> findPaginated(int page, int pageSize) {
+        return em.createQuery(
+                        "SELECT u FROM User u ORDER BY u.id",
+                        Student.class
+                )
+                .setFirstResult((page - 1) * pageSize) // offset
+                .setMaxResults(pageSize)               // limit
+                .getResultList();
     }
 }

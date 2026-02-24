@@ -1,6 +1,7 @@
 package com.fsdm.examsmanagement.controller;
 
 import com.fsdm.examsmanagement.dao.User.UserDAOImp;
+import com.fsdm.examsmanagement.model.User;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -28,7 +29,8 @@ public class AfterLoginStudent extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/jsp/AuthenticationError.jsp").forward(req, resp);
         }
         else{
-//            session.setAttribute("user",new User(11L,"abderrahim","elouardi ","elouarid@gmail.com","2222"));
+            System.out.println("bbbbbbbbbbbbbbbbbbbb---------------------------");
+            session.setAttribute("user",new User(11L,"abderrahim","elouardi ","elouarid@gmail.com","2222"));
             req.getRequestDispatcher("/WEB-INF/jsp/AfterLoginJspPage.jsp").forward(req, resp);
         }
     }

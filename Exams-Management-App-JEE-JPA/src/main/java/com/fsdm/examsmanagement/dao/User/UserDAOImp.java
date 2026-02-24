@@ -56,4 +56,16 @@ public class UserDAOImp implements UserDAO{
         String jpql = "SELECT u FROM User u";
         return em.createQuery(jpql, User.class).getResultList();
     }
+
+    @Override
+    public List<User> findPaginated(int page, int pageSize) {
+
+        return em.createQuery(
+                        "SELECT u FROM User u ORDER BY u.id",
+                        User.class
+                )
+                .setFirstResult((page - 1) * pageSize) // offset
+                .setMaxResults(pageSize)               // limit
+                .getResultList();
+    }
 }

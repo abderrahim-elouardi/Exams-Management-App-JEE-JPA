@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-    <%="bonjour " + ((User)session.getAttribute("user")).getLastName() + " " + ((User)session.getAttribute("user")).getFirstName()%>
+    <%="bonjour " %>
 </body>
 </html>

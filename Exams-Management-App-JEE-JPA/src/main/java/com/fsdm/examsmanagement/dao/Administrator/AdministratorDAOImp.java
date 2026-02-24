@@ -1,6 +1,7 @@
 package com.fsdm.examsmanagement.dao.Administrator;
 
 import com.fsdm.examsmanagement.model.Administrator;
+import com.fsdm.examsmanagement.model.User;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
@@ -52,5 +53,17 @@ public class AdministratorDAOImp implements AdministratorDAO {
     public List<Administrator> findAll() {
         String jpql = "SELECT u FROM User u";
         return em.createQuery(jpql, Administrator.class).getResultList();
+    }
+
+    @Override
+    public List<Administrator> findPaginated(int page, int pageSize) {
+
+        return em.createQuery(
+                        "SELECT u FROM User u ORDER BY u.id",
+                        Administrator.class
+                )
+                .setFirstResult((page - 1) * pageSize) // offset
+                .setMaxResults(pageSize)               // limit
+                .getResultList();
     }
 }
