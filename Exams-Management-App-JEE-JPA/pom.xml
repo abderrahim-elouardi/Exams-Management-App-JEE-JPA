@@ -42,6 +42,11 @@
                 <artifactId>jakarta.persistence-api</artifactId>
                 <version>3.1.0</version>
             </dependency>
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>10.0.0</version> <scope>provided</scope>
+        </dependency>
 
             <!-- Hibernate comme provider JPA -->
             <dependency>
@@ -56,12 +61,6 @@
                 <version>3.4.2</version>
             </dependency>
 
-            <!-- Pilote JDBC Oracle -->
-            <dependency>
-                <groupId>com.oracle.database.jdbc</groupId>
-                <artifactId>ojdbc11</artifactId>
-                <version>21.9.0.0</version>
-            </dependency>
         <!-- lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -73,6 +72,12 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>2.2.224</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

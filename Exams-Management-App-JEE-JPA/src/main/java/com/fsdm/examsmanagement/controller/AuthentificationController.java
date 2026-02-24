@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 
 public class AuthentificationController extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        String role = request.getParameter("role");
+        /*String role = request.getParameter("role");
         PrintWriter out = response.getWriter();
         AuthentificationService authentificationService = new AuthentificationService(
           request.getParameter("email"), request.getParameter("password"), role
@@ -25,7 +25,7 @@ public class AuthentificationController extends HttpServlet {
             case "etudiant" :
                 out.println(user.getId());
                 out.println(user.getEmail());
-        }
+        }*/
     }
     public void dePost(HttpServletRequest request, HttpServletResponse response) throws IOException{
         doGet(request,response);

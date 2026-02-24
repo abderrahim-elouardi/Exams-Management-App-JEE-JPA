@@ -7,16 +7,16 @@ public class AuthentificationService {
     private String email;
     private String password;
     private String role;
-    private StudentRepository studentRepository;
+    //private StudentRepository studentRepository;
     public AuthentificationService(String email, String password, String role) {
-        this(email, password, role, null);
+        this(email, password, role);
     }
 
-    public AuthentificationService(String email, String password, String role, StudentRepository studentRepository) {
+    public AuthentificationService(String email, String password, String role) {
         this.email = email;
         this.password = password;
         this.role = role;
-        this.studentRepository = studentRepository;
+        //this.studentRepository = studentRepository;
     }
     public User authenticate(){
         if(email.trim().isEmpty() || password.trim().isEmpty() || role.trim().isEmpty()){
@@ -26,14 +26,14 @@ public class AuthentificationService {
             case "administrateur":
                 return authenticateAdministrateur();
             case "etudiant":
-                return authenticateEtudiant();
+                //return authenticateEtudiant();
         }
         return null;
     }
     private User authenticateAdministrateur(){
         return null;
     }
-    private User authenticateEtudiant(){
+    /*private User authenticateEtudiant(){
         if (studentRepository == null) {
             return null;
         }
@@ -45,5 +45,5 @@ public class AuthentificationService {
             return user;
         }
         return null;
-    }
+    }*/
 }
