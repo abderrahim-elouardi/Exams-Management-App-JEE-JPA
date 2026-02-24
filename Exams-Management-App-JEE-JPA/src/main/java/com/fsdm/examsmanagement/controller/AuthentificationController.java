@@ -10,13 +10,14 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/authentification")
+@WebServlet({"/authentification", "/jsp/authentification"})
 public class AuthentificationController extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String role = normalizeRole(request.getParameter("role"));
         request.setAttribute("selectedRole", role);
-        request.getRequestDispatcher("/authentification.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/authentification.jsp").forward(request, response);
     }
 
     @Override
@@ -51,7 +52,7 @@ public class AuthentificationController extends HttpServlet {
             request.setAttribute("message", "Erreur durant le test d'authentification: " + exception.getMessage());
         }
 
-        request.getRequestDispatcher("/authentification.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/authentification.jsp").forward(request, response);
     }
 
     private String trim(String value) {
