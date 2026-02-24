@@ -1,4 +1,4 @@
-package com.fsdm.examsmanagement.dao;
+package com.fsdm.examsmanagement.dao.core;
 
 import java.util.List;
 
