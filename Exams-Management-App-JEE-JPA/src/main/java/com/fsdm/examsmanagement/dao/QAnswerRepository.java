@@ -1,4 +1,4 @@
-package com.fsdm.examsmanagement.repositories;
+package com.fsdm.examsmanagement.dao;
 
 import com.fsdm.examsmanagement.model.QAnswer;
 import org.springframework.data.jpa.repository.JpaRepository;

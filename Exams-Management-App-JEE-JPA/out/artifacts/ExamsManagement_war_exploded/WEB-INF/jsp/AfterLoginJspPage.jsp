@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-    <%="bonjour " + ((User)session.getAttribute("user")).getLastName() + " " + ((User)session.getAttribute("user")).getFirstName()%>
+    <%=(session!=null ?"bonjour " + ((User)session.getAttribute("user")).getLastName() + " " + ((User)session.getAttribute("user")).getFirstName():"vous devez s'authentifier d'abort")%>
 </body>
 </html>
