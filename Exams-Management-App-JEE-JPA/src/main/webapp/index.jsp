@@ -10,16 +10,9 @@
 
 <br/><br/>
 
-<form action="etudiant" method="get">
-    <button type="submit">Espace Étudiant</button>
-</form>
+<a href="choix-role.jsp">Tester l'authentification (Étudiant / Professeur)</a>
 
 <br/>
-
-<form action="professeur" method="get">
-    <button type="submit">Espace Professeur</button>
-</form>
-
 <br/>
 
 <form action="student-test" method="get">

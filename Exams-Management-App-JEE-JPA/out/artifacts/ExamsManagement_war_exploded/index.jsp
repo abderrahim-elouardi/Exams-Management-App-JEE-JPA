@@ -2,12 +2,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Accueil</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
+
+<h1>Bienvenue sur notre plateforme d’apprentissage</h1>
+
+<br/><br/>
+
+<a href="choix-role.jsp">Tester l'authentification (Étudiant / Professeur)</a>
+
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
+<br/>
+
+<form action="student-test" method="get">
+    <button type="submit">Test Étudiant (H2)</button>
+</form>
+
 </body>
 </html>

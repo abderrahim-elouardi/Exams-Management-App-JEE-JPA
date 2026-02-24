@@ -1,6 +1,6 @@
 package com.fsdm.examsmanagement.controller;
 
-import com.fsdm.examsmanagement.dao.User.UserDAOImp;
+import com.fsdm.examsmanagement.dao.User.UserDAO;
 import com.fsdm.examsmanagement.model.User;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
@@ -18,7 +18,7 @@ import java.io.PrintWriter;
 public class AfterLoginStudent extends HttpServlet {
 
     @EJB
-    UserDAOImp userDAOImp;
+    UserDAO userDAO;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
