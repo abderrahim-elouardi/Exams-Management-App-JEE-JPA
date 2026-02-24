@@ -18,7 +18,7 @@ import java.util.List;
 public class Student extends User{
     private String cne;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER) // On ajoute le mode EAGER ici
     @JoinTable(
             name = "STUDENT_EXAM",
             joinColumns = @JoinColumn(name = "student_id"),

@@ -1,4 +1,4 @@
-package com.fsdm.examsmanagement.dao.Administrator;
+package com.fsdm.examsmanagement.dao.administrator;
 
 import com.fsdm.examsmanagement.model.Administrator;
 import com.fsdm.examsmanagement.model.User;

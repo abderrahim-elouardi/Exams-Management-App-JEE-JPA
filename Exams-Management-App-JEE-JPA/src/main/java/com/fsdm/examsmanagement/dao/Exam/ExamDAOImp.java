@@ -1,17 +1,17 @@
-package com.fsdm.examsmanagement.dao.Exam;
+package com.fsdm.examsmanagement.dao.exam;
 
 import com.fsdm.examsmanagement.model.Exam;
 import com.fsdm.examsmanagement.model.Student;
-import com.fsdm.examsmanagement.model.User;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
+import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
 
 import java.util.List;
 
 @Stateless
-public class ExamDAOImp implements ExamDAO {
+public class ExamDAOImp implements com.fsdm.examsmanagement.dao.exam.ExamDAO {
 
     @PersistenceContext(unitName = "myPU")
     EntityManager em;
@@ -52,7 +52,7 @@ public class ExamDAOImp implements ExamDAO {
 
     @Override
     public List<Exam> findAll() {
-        String jpql = "SELECT u FROM User u";
+        String jpql = "SELECT u FROM Exam u";
         return em.createQuery(jpql, Exam.class).getResultList();
     }
 
@@ -66,5 +66,17 @@ public class ExamDAOImp implements ExamDAO {
                 .setFirstResult((page - 1) * pageSize) // offset
                 .setMaxResults(pageSize)               // limit
                 .getResultList();
+    }
+
+    public List<Exam> findByStudent(Student s) {
+        String jpql = "SELECT a FROM Exam a WHERE a.studentList = :student";
+
+        try {
+            return em.createQuery(jpql, Exam.class)
+                    .setParameter("student", s)
+                    .getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 }

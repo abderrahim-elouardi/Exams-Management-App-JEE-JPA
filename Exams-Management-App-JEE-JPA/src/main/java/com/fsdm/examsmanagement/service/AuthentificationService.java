@@ -1,9 +1,9 @@
 package com.fsdm.examsmanagement.service;
 
-import com.fsdm.examsmanagement.dao.Administrator.AdministratorDAO;
-import com.fsdm.examsmanagement.dao.Administrator.AdministratorDAOImp;
-import com.fsdm.examsmanagement.dao.Student.StudentDAO;
-import com.fsdm.examsmanagement.dao.Student.StudentDAOImp;
+import com.fsdm.examsmanagement.dao.administrator.AdministratorDAO;
+import com.fsdm.examsmanagement.dao.administrator.AdministratorDAOImp;
+import com.fsdm.examsmanagement.dao.student.StudentDAO;
+import com.fsdm.examsmanagement.dao.student.StudentDAOImp;
 import com.fsdm.examsmanagement.model.User;
 import com.fsdm.examsmanagement.security.PasswordSecurity;
 

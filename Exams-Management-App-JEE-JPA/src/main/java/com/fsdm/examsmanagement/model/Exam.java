@@ -21,6 +21,8 @@ public class Exam {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idExam;
+
+    private String titre;
     private LocalDateTime deadline;
 
     @ManyToOne

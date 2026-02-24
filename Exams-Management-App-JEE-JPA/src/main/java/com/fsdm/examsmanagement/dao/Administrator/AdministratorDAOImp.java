@@ -1,4 +1,4 @@
-package com.fsdm.examsmanagement.dao.Administrator;
+package com.fsdm.examsmanagement.dao.administrator;
 
 import com.fsdm.examsmanagement.model.Administrator;
 import com.fsdm.examsmanagement.model.User;
@@ -10,7 +10,7 @@ import jakarta.persistence.PersistenceContext;
 import java.util.List;
 
 @Stateless
-public class AdministratorDAOImp implements AdministratorDAO {
+public class AdministratorDAOImp implements com.fsdm.examsmanagement.dao.administrator.AdministratorDAO {
 
     @PersistenceContext(unitName = "myPU")
     EntityManager em;
