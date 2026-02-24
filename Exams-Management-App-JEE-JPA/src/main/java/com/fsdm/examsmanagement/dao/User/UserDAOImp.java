@@ -5,6 +5,7 @@ import com.fsdm.examsmanagement.model.User;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
+import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 public class UserDAOImp implements UserDAO{
 
     @PersistenceContext(unitName = "myPU")
-    EntityManager em;
+    EntityManager em= Persistence.createEntityManagerFactory("myPU").createEntityManager();
 
     @Override
     public User findByEmailAndPassword(String email, String password) {

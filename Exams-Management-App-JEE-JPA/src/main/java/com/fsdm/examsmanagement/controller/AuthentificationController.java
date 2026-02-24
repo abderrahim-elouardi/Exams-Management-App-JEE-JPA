@@ -30,7 +30,7 @@ public class AuthentificationController extends HttpServlet {
         if (email.isEmpty() || password.isEmpty()) {
             request.setAttribute("loginSuccess", false);
             request.setAttribute("message", "Email et mot de passe sont obligatoires.");
-            request.getRequestDispatcher("/authentification.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/authentification.jsp").forward(request, response);
             return;
         }
 
