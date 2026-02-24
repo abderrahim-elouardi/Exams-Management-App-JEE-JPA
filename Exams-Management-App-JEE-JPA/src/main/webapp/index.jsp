@@ -2,12 +2,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Accueil</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
+
+<h1>Bienvenue sur notre plateforme d’apprentissage</h1>
+
+<br/><br/>
+
+<form action="etudiant" method="get">
+    <button type="submit">Espace Étudiant</button>
+</form>
+
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
+
+<form action="professeur" method="get">
+    <button type="submit">Espace Professeur</button>
+</form>
+
+<br/>
+
+<form action="student-test" method="get">
+    <button type="submit">Test Étudiant (H2)</button>
+</form>
+
 </body>
 </html>
