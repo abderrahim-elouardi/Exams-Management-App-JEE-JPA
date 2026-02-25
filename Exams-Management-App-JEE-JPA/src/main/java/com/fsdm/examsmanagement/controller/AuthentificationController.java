@@ -2,6 +2,7 @@ package com.fsdm.examsmanagement.controller;
 
 import com.fsdm.examsmanagement.model.User;
 import com.fsdm.examsmanagement.service.AuthentificationService;
+import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -12,6 +13,9 @@ import java.io.IOException;
 
 @WebServlet({"/authentification", "/jsp/authentification"})
 public class AuthentificationController extends HttpServlet {
+
+    @EJB
+    private AuthentificationService authentificationService;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -36,8 +40,7 @@ public class AuthentificationController extends HttpServlet {
         }
 
         try {
-            AuthentificationService authentificationService = new AuthentificationService(email, password, role);
-            User user = authentificationService.authenticate();
+            User user = authentificationService.authenticate(email, password, role);
 
             if (user != null) {
                 request.getSession(true).setAttribute("user", user);
