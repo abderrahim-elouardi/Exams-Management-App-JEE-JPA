@@ -5,13 +5,13 @@ import com.fsdm.examsmanagement.model.Student;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
-import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
+
 
 import java.util.List;
 
 @Stateless
-public class ExamDAOImp implements com.fsdm.examsmanagement.dao.exam.ExamDAO {
+public class ExamDAOImp implements ExamDAO {
 
     @PersistenceContext(unitName = "myPU")
     EntityManager em;

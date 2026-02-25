@@ -6,6 +6,7 @@ import com.fsdm.examsmanagement.dao.exam.ExamDAOImp;
 import com.fsdm.examsmanagement.model.Administrator;
 import com.fsdm.examsmanagement.model.Exam;
 import com.fsdm.examsmanagement.model.User;
+import com.fsdm.examsmanagement.security.PasswordSecurity;
 import jakarta.ejb.EJB;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -20,23 +21,23 @@ public class MainTest {
 
     public static UserDAOImp userDAOImp;
     public static void main(String[] args){
-//        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPU");
-//        EntityManager entityManager = entityManagerFactory.createEntityManager();
-//        EntityTransaction entityTransaction = entityManager.getTransaction();
-//
-//        entityTransaction.begin();
-//
-//        Administrator user = new Administrator();
-//        user.setEmail("elou@gmail.com");
-//        user.setPassword("bonnn123");
-//        user.setFirstName("elouardi");
-//        user.setLastName("abderrahim");
-//
-//        entityManager.persist(user);
-//        entityTransaction.commit();
-//
-//        entityManager.close();
-//        entityManagerFactory.close();
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPU");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+
+        entityTransaction.begin();
+
+        Administrator user = new Administrator();
+        user.setEmail("elou@gmail.com");
+        user.setPassword(PasswordSecurity.hash("bonnn123"));
+        user.setFirstName("elouardi");
+        user.setLastName("abderrahim");
+
+        entityManager.persist(user);
+        entityTransaction.commit();
+
+        entityManager.close();
+        entityManagerFactory.close();
 //
 //        com.fsdm.examsmanagement.dao.administrator.AdministratorDAOImp administratorDAOImp = new AdministratorDAOImp();
 //        ExamDAOImp examDAOImp = new ExamDAOImp();

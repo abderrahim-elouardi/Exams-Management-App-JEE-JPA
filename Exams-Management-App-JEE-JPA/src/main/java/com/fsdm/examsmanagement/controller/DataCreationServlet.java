@@ -8,6 +8,7 @@ import com.fsdm.examsmanagement.dao.student.StudentDAO;
 import com.fsdm.examsmanagement.model.Administrator;
 import com.fsdm.examsmanagement.model.Exam;
 import com.fsdm.examsmanagement.model.Student;
+import com.fsdm.examsmanagement.security.PasswordSecurity;
 import jakarta.ejb.EJB;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -31,7 +32,7 @@ public class DataCreationServlet extends HttpServlet {
 
         // 1. Créer et SAUVEGARDER l'administrateur en premier
         Administrator admin = new Administrator();
-        admin.setEmail("username");
+        admin.setEmail("username@gmail.com");
         admin.setPassword("password");
         admin.setLastName("kamal");
         admin.setFirstName("ismaili");

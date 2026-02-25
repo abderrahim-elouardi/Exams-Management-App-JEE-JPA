@@ -1,13 +1,9 @@
 package com.fsdm.examsmanagement.controller;
 
-import com.fsdm.examsmanagement.dao.User.UserDAO;
 import com.fsdm.examsmanagement.dao.administrator.AdministratorDAO;
-import com.fsdm.examsmanagement.dao.exam.ExamDAOImp;
 import com.fsdm.examsmanagement.dao.student.StudentDAO;
 import com.fsdm.examsmanagement.model.Administrator;
-import com.fsdm.examsmanagement.model.Exam;
 import com.fsdm.examsmanagement.model.Student;
-import com.fsdm.examsmanagement.model.User;
 import com.fsdm.examsmanagement.security.PasswordSecurity;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
@@ -19,16 +15,13 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 //import jakarta.inject.Inject;
 
-@WebServlet("/afterLoginStudent")
-public class AfterLoginStudent extends HttpServlet {
+@WebServlet("/afterLoginTeacher")
+public class AfterLoginTeacher extends HttpServlet {
 
     @EJB
-    StudentDAO studentDAO;
+    AdministratorDAO administratorDAO;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,10 +33,10 @@ public class AfterLoginStudent extends HttpServlet {
         }
         else{
             //recuperation de la liste des exams
-            Student student = studentDAO.findByEmailAndPassword("username", "password");
-            session.setAttribute("student",student);
-            session.setAttribute("exams",student.getExamList());
-            req.getRequestDispatcher("/WEB-INF/jsp/AfterLoginJspPageStudent.jsp").forward(req, resp);
+            Administrator admin = administratorDAO.findByEmailAndPassword("username@gmail.com", "password");
+            session.setAttribute("admin",admin);
+            session.setAttribute("exams",admin.getExamList());
+            req.getRequestDispatcher("/WEB-INF/jsp/AfterLoginJspPageTeacher.jsp").forward(req, resp);
         }
     }
 

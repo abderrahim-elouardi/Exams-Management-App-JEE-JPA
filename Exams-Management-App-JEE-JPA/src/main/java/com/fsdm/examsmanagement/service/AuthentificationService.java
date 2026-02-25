@@ -6,11 +6,15 @@ import com.fsdm.examsmanagement.dao.student.StudentDAO;
 import com.fsdm.examsmanagement.dao.student.StudentDAOImp;
 import com.fsdm.examsmanagement.model.User;
 import com.fsdm.examsmanagement.security.PasswordSecurity;
+import jakarta.ejb.EJB;
+
 
 public class AuthentificationService {
     private String email;
     private String password;
     private String role;
+
+    @EJB
     private AdministratorDAO administratorDAO;
     private StudentDAO studentDAO;
 
@@ -31,19 +35,12 @@ public class AuthentificationService {
             case "etudiant":
                 return authenticateEtudiant();
         }
+        System.out.println("role indefinit");
         return null;
     }
     private User authenticateAdministrateur(){
-        administratorDAO = new AdministratorDAOImp();
-        if(administratorDAO==null){
-            return null;
-        }
         String hashPassword = PasswordSecurity.hash(password);
-        User user = administratorDAO.findByEmailAndPassword(email, hashPassword);
-        if(user.getPassword().equals(password)){
-            return user;
-        }
-        return null;
+        return administratorDAO.findByEmailAndPassword(email, hashPassword);
     }
     private User authenticateEtudiant(){
         studentDAO = new StudentDAOImp();

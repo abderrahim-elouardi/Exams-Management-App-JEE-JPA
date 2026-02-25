@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <title>Authentification</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/authentification.css" />
 </head>
 <body>
-<h1>Page d'authentification</h1>
-
 <%
     String selectedRole = (String) request.getAttribute("selectedRole");
     if (selectedRole == null || selectedRole.trim().isEmpty()) {
@@ -16,36 +15,42 @@
     if (selectedRole == null || selectedRole.trim().isEmpty()) {
         selectedRole = "etudiant";
     }
-
     String message = (String) request.getAttribute("message");
     Boolean loginSuccess = (Boolean) request.getAttribute("loginSuccess");
 %>
+<div class="container">
+    <div class="header">
+        <h1>Authentification</h1>
+        <p class="subtitle">Accédez à votre espace académique</p>
+    </div>
 
-<p>Rôle sélectionné : <strong><%= selectedRole %></strong></p>
+    <p class="role-info">Rôle sélectionné : <strong><%= selectedRole %></strong></p>
 
-<% if (message != null) { %>
-    <p><strong><%= message %></strong></p>
-<% } %>
+    <% if (message != null) { %>
+        <p class="message <%= (loginSuccess != null && loginSuccess) ? "success" : "error" %>"><strong><%= message %></strong></p>
+    <% } %>
 
-<form action="jsp/authentification" method="post">
-    <input type="hidden" name="role" value="<%= selectedRole %>" />
+    <form action="${pageContext.request.contextPath}/authentification" method="post" class="login-form">
+        <input type="hidden" name="role" value="<%= selectedRole %>" />
 
-    <label>Email :</label>
-    <input type="email" name="email" required />
-    <br/><br/>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" required />
+        </div>
 
-    <label>Mot de passe :</label>
-    <input type="password" name="password" required />
-    <br/><br/>
+        <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input id="password" type="password" name="password" required />
+        </div>
 
-    <button type="submit">Se connecter</button>
-</form>
+        <button type="submit" class="submit-btn">Se connecter</button>
+    </form>
 
-<br/>
-<a href="choix-role.jsp">Retour au choix du rôle</a>
+    <a class="back-link" href="${pageContext.request.contextPath}/index.jsp">Retour au choix du rôle</a>
 
-<% if (loginSuccess != null && loginSuccess) { %>
-    <p>Test d'authentification terminé avec succès.</p>
-<% } %>
+    <% if (loginSuccess != null && loginSuccess) { %>
+        <p class="success-text">Test d'authentification terminé avec succès.</p>
+    <% } %>
+</div>
 </body>
 </html>

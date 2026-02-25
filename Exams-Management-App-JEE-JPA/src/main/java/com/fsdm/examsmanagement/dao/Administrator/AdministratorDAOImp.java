@@ -5,15 +5,16 @@ import com.fsdm.examsmanagement.model.User;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
+import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
 
 import java.util.List;
 
 @Stateless
-public class AdministratorDAOImp implements com.fsdm.examsmanagement.dao.administrator.AdministratorDAO {
+public class AdministratorDAOImp implements AdministratorDAO {
 
     @PersistenceContext(unitName = "myPU")
-    EntityManager em;
+    EntityManager em = Persistence.createEntityManagerFactory("myPU").createEntityManager();
 
     @Override
     public Administrator findByEmailAndPassword(String email, String password) {

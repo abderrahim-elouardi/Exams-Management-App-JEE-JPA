@@ -1,6 +1,7 @@
 package com.fsdm.examsmanagement.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -20,7 +21,7 @@ public class Administrator extends User{
 
     private String cin;
 
-    @OneToMany(mappedBy = "admin")
+    @OneToMany(mappedBy = "admin",fetch = FetchType.EAGER)
     private List<Exam> examList;
 
 }

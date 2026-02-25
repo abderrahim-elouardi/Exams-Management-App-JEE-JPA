@@ -1,8 +1,6 @@
 package com.fsdm.examsmanagement.dao.student;
 
-import com.fsdm.examsmanagement.dao.student.StudentDAO;
 import com.fsdm.examsmanagement.model.Student;
-import com.fsdm.examsmanagement.model.User;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;

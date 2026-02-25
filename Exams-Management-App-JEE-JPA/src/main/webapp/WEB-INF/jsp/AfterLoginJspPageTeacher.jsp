@@ -1,5 +1,6 @@
 <%@ page import="com.fsdm.examsmanagement.model.User" %>
-<%@ page import="com.fsdm.examsmanagement.model.Student" %><%--
+<%@ page import="com.fsdm.examsmanagement.model.Student" %>
+<%@ page import="com.fsdm.examsmanagement.model.Administrator" %><%--
   Created by IntelliJ IDEA.
   User: EL OUARDI
   Date: 23/02/2026
@@ -226,8 +227,11 @@
     <div class="navbar-container">
         <div class="navbar-brand">MyApp</div>
         <div class="navbar-right">
-            <div class="welcome-message">Bienvenue, <%=((Student)session.getAttribute("student")).getFirstName()+((Student)session.getAttribute("student")).getFirstName()%></div>
-            <button class="logout-btn">Déconnexion</button>
+            <div class="welcome-message">Bienvenue,Professeur <%=((Administrator)session.getAttribute("admin")).getFirstName()+((Administrator)session.getAttribute("admin")).getFirstName()%></div>
+            <a href="makeExam.jsp" class="logout-btn">Preparer un Examen</a>
+            <form action="deconnection" method="POST">
+                <button class="logout-btn">Déconnexion</button>
+            </form>
         </div>
     </div>
 </nav>
