@@ -1,14 +1,7 @@
 package com.fsdm.examsmanagement.controller;
 
-import com.fsdm.examsmanagement.dao.User.UserDAO;
-import com.fsdm.examsmanagement.dao.Administrator.AdministratorDAO;
-import com.fsdm.examsmanagement.dao.Exam.ExamDAOImp;
-import com.fsdm.examsmanagement.dao.Student.StudentDAO;
-import com.fsdm.examsmanagement.model.Administrator;
-import com.fsdm.examsmanagement.model.Exam;
+import com.fsdm.examsmanagement.dao.student.StudentDAO;
 import com.fsdm.examsmanagement.model.Student;
-import com.fsdm.examsmanagement.model.User;
-import com.fsdm.examsmanagement.security.PasswordSecurity;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,13 +9,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-//import jakarta.inject.Inject;
+
 
 @WebServlet("/afterLoginStudent")
 public class AfterLoginStudent extends HttpServlet {

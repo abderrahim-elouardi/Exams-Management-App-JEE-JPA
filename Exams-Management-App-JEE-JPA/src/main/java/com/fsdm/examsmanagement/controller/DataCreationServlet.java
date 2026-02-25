@@ -1,20 +1,17 @@
 package com.fsdm.examsmanagement.controller;
 
-import com.fsdm.examsmanagement.dao.Administrator.AdministratorDAO;
-import com.fsdm.examsmanagement.dao.Administrator.AdministratorDAOImp;
-import com.fsdm.examsmanagement.dao.Exam.ExamDAO;
-import com.fsdm.examsmanagement.dao.Exam.ExamDAOImp;
-import com.fsdm.examsmanagement.dao.Student.StudentDAO;
+import com.fsdm.examsmanagement.dao.administrator.AdministratorDAO;
+import com.fsdm.examsmanagement.dao.exam.ExamDAO;
+import com.fsdm.examsmanagement.dao.student.StudentDAO;
 import com.fsdm.examsmanagement.model.Administrator;
 import com.fsdm.examsmanagement.model.Exam;
 import com.fsdm.examsmanagement.model.Student;
-import com.fsdm.examsmanagement.security.PasswordSecurity;
 import jakarta.ejb.EJB;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -28,7 +25,7 @@ public class DataCreationServlet extends HttpServlet {
     @EJB
     StudentDAO studentDAO;
     @Override
-    public void doGet(HttpServletRequest request , HttpServletResponse response){
+    public void doGet(HttpServletRequest request , HttpServletResponse response) throws IOException {
 
         // 1. Créer et SAUVEGARDER l'administrateur en premier
         Administrator admin = new Administrator();
@@ -41,6 +38,11 @@ public class DataCreationServlet extends HttpServlet {
         // On persiste l'admin pour qu'il reçoive un ID de la base
         administratorDAO.save(admin);
 
+
+        System.out.println("----******************_____");
+        for(Administrator n:administratorDAO.findAll()){
+            System.out.println(n.getEmail());
+        }
         // 2. Créer les examens en utilisant l'admin déjà sauvegardé
         Exam exam1 = new Exam();
         exam1.setTitre("JEE Exam 1");
@@ -76,6 +78,7 @@ public class DataCreationServlet extends HttpServlet {
         student.setExamList(List.of(exam1,exam2));
         studentDAO.save(student);
         System.out.println("student was saved");
+
     }
 
 

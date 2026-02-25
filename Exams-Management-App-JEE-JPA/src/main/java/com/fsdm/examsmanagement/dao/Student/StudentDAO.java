@@ -1,4 +1,4 @@
-package com.fsdm.examsmanagement.dao.Student;
+package com.fsdm.examsmanagement.dao.student;
 
 import com.fsdm.examsmanagement.model.Student;
 import com.fsdm.examsmanagement.model.User;

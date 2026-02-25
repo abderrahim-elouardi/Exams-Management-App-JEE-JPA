@@ -38,10 +38,8 @@ public class AuthentificationController extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/jsp/authentification.jsp").forward(request, response);
             return;
         }
-
         try {
             User user = authentificationService.authenticate(email, password, role);
-
             if (user != null) {
                 request.getSession(true).setAttribute("user", user);
                 request.setAttribute("loginSuccess", true);
