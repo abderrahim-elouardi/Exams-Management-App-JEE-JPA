@@ -10,7 +10,6 @@ import java.util.List;
 
 @Stateless
 public class StudentDAOImp implements StudentDAO {
-
     @PersistenceContext(unitName = "myPU")
     EntityManager em;
 
