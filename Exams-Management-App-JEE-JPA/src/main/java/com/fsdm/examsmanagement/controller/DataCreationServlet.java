@@ -1,10 +1,10 @@
 package com.fsdm.examsmanagement.controller;
 
-import com.fsdm.examsmanagement.dao.administrator.AdministratorDAO;
-import com.fsdm.examsmanagement.dao.administrator.AdministratorDAOImp;
-import com.fsdm.examsmanagement.dao.exam.ExamDAO;
-import com.fsdm.examsmanagement.dao.exam.ExamDAOImp;
-import com.fsdm.examsmanagement.dao.student.StudentDAO;
+import com.fsdm.examsmanagement.dao.Administrator.AdministratorDAO;
+import com.fsdm.examsmanagement.dao.Administrator.AdministratorDAOImp;
+import com.fsdm.examsmanagement.dao.Exam.ExamDAO;
+import com.fsdm.examsmanagement.dao.Exam.ExamDAOImp;
+import com.fsdm.examsmanagement.dao.Student.StudentDAO;
 import com.fsdm.examsmanagement.model.Administrator;
 import com.fsdm.examsmanagement.model.Exam;
 import com.fsdm.examsmanagement.model.Student;

@@ -1,8 +1,8 @@
 package com.fsdm.examsmanagement;
 
 import com.fsdm.examsmanagement.dao.User.UserDAOImp;
-import com.fsdm.examsmanagement.dao.administrator.AdministratorDAOImp;
-import com.fsdm.examsmanagement.dao.exam.ExamDAOImp;
+import com.fsdm.examsmanagement.dao.Administrator.AdministratorDAOImp;
+import com.fsdm.examsmanagement.dao.Exam.ExamDAOImp;
 import com.fsdm.examsmanagement.model.Administrator;
 import com.fsdm.examsmanagement.model.Exam;
 import com.fsdm.examsmanagement.model.User;
