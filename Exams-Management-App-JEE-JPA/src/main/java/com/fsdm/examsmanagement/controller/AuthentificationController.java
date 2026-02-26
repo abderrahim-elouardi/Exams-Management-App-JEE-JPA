@@ -19,7 +19,7 @@ public class AuthentificationController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String role = normalizeRole(request.getParameter("role"));
+        String role = trim(request.getParameter("role"));
         request.setAttribute("selectedRole", role);
         request.getRequestDispatcher("/WEB-INF/jsp/authentification.jsp").forward(request, response);
     }
@@ -28,7 +28,7 @@ public class AuthentificationController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String email = trim(request.getParameter("email"));
         String password = trim(request.getParameter("password"));
-        String role = normalizeRole(request.getParameter("role"));
+        String role = trim(request.getParameter("role"));
 
         request.setAttribute("selectedRole", role);
 
@@ -41,7 +41,7 @@ public class AuthentificationController extends HttpServlet {
         try {
             User user = authentificationService.authenticate(email, password, role);
             if (user != null) {
-                request.getSession(true).setAttribute("user", user);
+                request.getSession(true).setAttribute(role, user);
                 request.setAttribute("loginSuccess", true);
                 request.setAttribute("message", "Authentification réussie pour: " + user.getEmail());
             } else {
@@ -52,14 +52,19 @@ public class AuthentificationController extends HttpServlet {
             request.setAttribute("loginSuccess", false);
             request.setAttribute("message", "Erreur durant le test d'authentification: " + exception.getMessage());
         }
-
-        request.getRequestDispatcher("/WEB-INF/jsp/authentification.jsp").forward(request, response);
+        if(role.equals("admin")){
+            request.getRequestDispatcher("/WEB-INF/jsp/AfterLoginJspPageTeacher.jsp").forward(request, response);
+        }
+        if(role.equals("student")){
+            request.getRequestDispatcher("/WEB-INF/jsp/AfterLoginJspPageStudent.jsp").forward(request, response);
+        }
     }
 
     private String trim(String value) {
         return value == null ? "" : value.trim();
     }
 
+    /*
     private String normalizeRole(String role) {
         String normalized = trim(role).toLowerCase();
         if ("professeur".equals(normalized)) {
@@ -70,4 +75,5 @@ public class AuthentificationController extends HttpServlet {
         }
         return normalized;
     }
+     */
 }
