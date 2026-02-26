@@ -10,18 +10,18 @@
 <p>Choisissez votre espace :</p>
 
 <form action="authentification" method="get">
-    <input type="hidden" name="role" value="etudiant" />
+    <input type="hidden" name="role" value="student" />
     <button type="submit">Étudiant</button>
 </form>
 
 <br/>
 
 <form action="authentification" method="get">
-    <input type="hidden" name="role" value="professeur" />
+    <input type="hidden" name="role" value="admin" />
     <button type="submit">Professeur</button>
 </form>
 
 <br/>
-<a href="index.jsp">Retour à l'accueil</a>
+<a href="../../index.jsp">Retour à l'accueil</a>
 </body>
 </html>

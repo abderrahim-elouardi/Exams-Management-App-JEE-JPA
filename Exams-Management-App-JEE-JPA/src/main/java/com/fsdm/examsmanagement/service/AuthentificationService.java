@@ -20,18 +20,18 @@ public class AuthentificationService {
             return null;
         }
         switch (role){
-            case "administrateur":
-                return authenticateAdministrateur(email, password);
-            case "etudiant":
-                return authenticateEtudiant(email, password);
+            case "admin":
+                return authenticateAdministrator(email, password);
+            case "student":
+                return authenticateStudent(email, password);
         }
         System.out.println("role indefinit");
         return null;
     }
-    private User authenticateAdministrateur(String email, String password) {
+    private User authenticateAdministrator(String email, String password) {
         return administratorDAO.findByEmailAndPassword(email, password);
     }
-    private User authenticateEtudiant(String email, String password) {
+    private User authenticateStudent(String email, String password) {
         return studentDAO.findByEmailAndPassword(email, password);
     }
 }
