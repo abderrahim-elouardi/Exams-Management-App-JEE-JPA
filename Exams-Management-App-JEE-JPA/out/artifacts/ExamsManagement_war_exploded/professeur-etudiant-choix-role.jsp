@@ -21,12 +21,12 @@
 
     <div class="role-section">
         <form action="jsp/authentification" method="get" class="role-form">
-            <input type="hidden" name="role" value="etudiant" />
+            <input type="hidden" name="role" value="student" />
             <button type="submit" class="role-button etudiant-btn">Espace Étudiant</button>
         </form>
 
         <form action="jsp/authentification" method="get" class="role-form">
-            <input type="hidden" name="role" value="professeur" />
+            <input type="hidden" name="role" value="admin" />
             <button type="submit" class="role-button professeur-btn">Espace Professeur</button>
         </form>
     </div>

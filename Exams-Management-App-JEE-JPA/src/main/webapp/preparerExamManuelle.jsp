@@ -493,7 +493,32 @@
     <input type="text" name="QCMq${i}_opt2" placeholder="Option 2"/>
     <input type="text" name="QCMq${i}_opt3" placeholder="Option 3"/>
     <input type="text" name="QCMq${i}_opt4" placeholder="Option 4"/>
-</div>`
+</div>
+<div class="form-section">
+        <h2 class="section-title">Configuration</h2>
+
+        <div class="select-group">
+          <div class="form-group">
+            <label for="question-count">Nombre de Points pour cette question. *</label>
+            <select id="question-count" name="question_count" required>
+              <option value="">Sélectionnez un nombre</option>
+              <option value="1">1</option>
+              <option value="5">2</option>
+              <option value="5">3</option>
+              <option value="5">4</option>
+              <option value="5">5</option>
+              <option value="5">6</option>
+              <option value="5">7</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+          </div>
+        </div>
+      </div>
+`
                 }
             });
 
@@ -523,7 +548,32 @@
 
 <div class="options">
     <input type="text" name="ShortAnswerq${i}_opt1" placeholder="Answer"/>
-</div>`
+</div>
+<div class="form-section">
+        <h2 class="section-title">Configuration</h2>
+
+        <div class="select-group">
+          <div class="form-group">
+            <label for="question-count">Nombre de Points pour cette question. *</label>
+            <select id="question-count" name="question_count" required>
+              <option value="">Sélectionnez un nombre</option>
+              <option value="1">1</option>
+              <option value="5">2</option>
+              <option value="5">3</option>
+              <option value="5">4</option>
+              <option value="5">5</option>
+              <option value="5">6</option>
+              <option value="5">7</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      `
                 }
             });
 

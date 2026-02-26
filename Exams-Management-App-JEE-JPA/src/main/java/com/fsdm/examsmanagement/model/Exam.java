@@ -37,4 +37,14 @@ public class Exam {
 
     @OneToMany(mappedBy = "exam",cascade=CascadeType.ALL)
     private List<Questioner> questioner;
+
+
+    @Override
+    public String toString() {
+        return "Exam{" +
+                "idExam=" + idExam +
+                ", titre='" + titre + '\'' +
+                ", deadline=" + deadline +
+                '}';
+    }
 }

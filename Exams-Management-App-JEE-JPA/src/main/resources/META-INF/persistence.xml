@@ -12,6 +12,7 @@
         <class>com.fsdm.examsmanagement.model.Student</class>
         <class>com.fsdm.examsmanagement.model.Administrator</class>
         <class>com.fsdm.examsmanagement.model.Exam</class>
+        <class>com.fsdm.examsmanagement.model.QShortAnswer</class>
 
         <properties>
             <property name="hibernate.show_sql" value="true"/>

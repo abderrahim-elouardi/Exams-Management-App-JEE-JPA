@@ -11,6 +11,6 @@ import java.util.List;
  */
 public class QShort extends Questioner{
 
-    @OneToOne(mappedBy = "qshort")
+    @OneToOne(mappedBy = "qshort",cascade = CascadeType.ALL)
     private QShortAnswer answer;
 }

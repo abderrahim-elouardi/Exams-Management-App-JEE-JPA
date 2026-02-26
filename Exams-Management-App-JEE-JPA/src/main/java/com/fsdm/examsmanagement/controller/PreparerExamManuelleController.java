@@ -1,6 +1,7 @@
 package com.fsdm.examsmanagement.controller;
 
 import com.fsdm.examsmanagement.dao.administrator.AdministratorDAO;
+import com.fsdm.examsmanagement.dao.exam.ExamDAO;
 import com.fsdm.examsmanagement.model.*;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
@@ -12,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/preparerExamManuelleController")
@@ -20,9 +22,12 @@ public class PreparerExamManuelleController extends HttpServlet {
 
     @EJB
     AdministratorDAO administratorDAO;
+    @EJB
+    ExamDAO examDAO;
 
     @Override
     public void doPost(HttpServletRequest request , HttpServletResponse response) throws IOException, ServletException {
+        response.setContentType("application/json");
 //        String titre = request.getParameter("exam-title");
 //        String deadline = request.getParameter("exam-deadline");
 //        String[] splitedDeadline = deadline.split("-");
@@ -86,7 +91,14 @@ public class PreparerExamManuelleController extends HttpServlet {
                 optionAnswer1.setAnswer(request.getParameter("QCMq"+i+"_opt4"));
 
                 qcm.setAnswerList(List.of(optionAnswer1,optionAnswer2,optionAnswer3,optionAnswer4));
-                exam.getQuestioner().add(qcm);
+                if(exam.getQuestioner()==null){
+                    List<Questioner> list = new ArrayList<>();
+                    list.add(qcm);
+                    exam.setQuestioner(list);
+                }
+                else{
+                    exam.getQuestioner().add(qcm);
+                }
             }
         }
         if(SHORTquestion_typesCheckBox!=null){
@@ -97,11 +109,35 @@ public class PreparerExamManuelleController extends HttpServlet {
                 answer.setAnswer("ShortAnswerq"+i+"_opt1");
                 answer.setQshort(qshort);
                 answer.setStatus(1);
-                exam.getQuestioner().add(qshort);
+                if(exam.getQuestioner()==null){
+                    List<Questioner> list = new ArrayList<>();
+                    list.add(qshort);
+                    exam.setQuestioner(list);
+                }
+                else{
+                    exam.getQuestioner().add(qshort);
+                }
             }
         }
         if(FILLBLANKquestion_typesCheckBox!=null){
+            for(int i=0;i<numberOfFillBlankQuestion;i++){
+                QFillInBlank qFillInBlank = new QFillInBlank();
+                qFillInBlank.setQuestion(request.getParameter("FillBlankquestion_${i}"));
 
+                if(exam.getQuestioner()==null){
+                    List<Questioner> list = new ArrayList<>();
+                    list.add(qFillInBlank);
+                    exam.setQuestioner(list);
+                }
+                else{
+                    exam.getQuestioner().add(qFillInBlank);
+                }
+            }
         }
+        Administrator admin =administratorDAO.findByEmailAndPassword("username@gmail.com","password");
+        exam.setAdmin(admin);
+        examDAO.save(exam);
+        out.println(administratorDAO.findByEmailAndPassword("username@gmail.com","password"));
+
     }
 }

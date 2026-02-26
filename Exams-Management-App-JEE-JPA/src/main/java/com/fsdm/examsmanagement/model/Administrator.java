@@ -24,4 +24,16 @@ public class Administrator extends User{
     @OneToMany(mappedBy = "admin",fetch = FetchType.EAGER)
     private List<Exam> examList;
 
+    @Override
+    public String toString() {
+        return "Administrator{" +
+                "cin='" + cin + '\'' +
+                ", examList=" + examList +
+                ", id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
