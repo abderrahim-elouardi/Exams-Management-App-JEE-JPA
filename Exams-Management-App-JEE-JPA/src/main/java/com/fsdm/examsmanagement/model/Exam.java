@@ -23,7 +23,7 @@ public class Exam {
     private Long idExam;
 
     private String titre;
-    private LocalDateTime deadline;
+    private LocalDate deadline;
 
     @ManyToOne
     @JoinColumn(name = "idAdmin")
@@ -35,6 +35,6 @@ public class Exam {
 //    @OneToMany(mappedBy = "examen")
 //    private List<Questioner> questions;
 
-    @OneToMany(mappedBy = "exam")
+    @OneToMany(mappedBy = "exam",cascade=CascadeType.ALL)
     private List<Questioner> questioner;
 }

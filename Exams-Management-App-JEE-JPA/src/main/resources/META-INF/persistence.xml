@@ -8,7 +8,7 @@
         <class>com.fsdm.examsmanagement.model.QCM</class>
         <class>com.fsdm.examsmanagement.model.QShort</class>
         <class>com.fsdm.examsmanagement.model.QFillInBlank</class>
-        <class>com.fsdm.examsmanagement.model.QAnswer</class>
+        <class>com.fsdm.examsmanagement.model.QCMAnswer</class>
         <class>com.fsdm.examsmanagement.model.Student</class>
         <class>com.fsdm.examsmanagement.model.Administrator</class>
         <class>com.fsdm.examsmanagement.model.Exam</class>

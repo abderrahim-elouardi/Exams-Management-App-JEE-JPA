@@ -1,10 +1,10 @@
 package com.fsdm.examsmanagement.dao.question;
 
 import com.fsdm.examsmanagement.dao.core.AbstractGeneriqueDAO;
-import com.fsdm.examsmanagement.model.QAnswer;
+import com.fsdm.examsmanagement.model.QCMAnswer;
 
-public class QAnswerDAOImp extends AbstractGeneriqueDAO<QAnswer, Long> {
+public class QAnswerDAOImp extends AbstractGeneriqueDAO<QCMAnswer, Long> {
     public QAnswerDAOImp(){
-        super(QAnswer.class, "id");
+        super(QCMAnswer.class, "id");
     }
 }

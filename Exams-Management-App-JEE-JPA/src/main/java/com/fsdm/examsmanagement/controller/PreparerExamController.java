@@ -30,6 +30,7 @@ public class PreparerExamController extends HttpServlet {
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(filePart.getInputStream())
         );
+
         reader.lines().forEach(out::println);
     }
 }

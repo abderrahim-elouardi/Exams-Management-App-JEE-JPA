@@ -1,7 +1,8 @@
 package com.fsdm.examsmanagement.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "qshort")
@@ -9,4 +10,7 @@ import jakarta.persistence.Table;
  * Represents a short-answer question.
  */
 public class QShort extends Questioner{
+
+    @OneToOne(mappedBy = "qshort")
+    private QShortAnswer answer;
 }

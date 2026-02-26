@@ -6,20 +6,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="qanswer")
+@Table(name="QShortAnswer")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 /**
  * Represents one possible answer for a multiple-choice question.
  */
-public class QAnswer {
+public class QShortAnswer {
     /**
      * Unique identifier of the answer.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "qanswerid")
+    @Column(name = "QShortId")
     private Long id;
 
     /**
@@ -37,8 +37,8 @@ public class QAnswer {
     /**
      * Multiple-choice question that owns this answer.
      */
-    @ManyToOne
-    @JoinColumn(name = "qcmid")
-    private QCM qcm;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "qshortid")
+    private QShort qshort;
 
 }

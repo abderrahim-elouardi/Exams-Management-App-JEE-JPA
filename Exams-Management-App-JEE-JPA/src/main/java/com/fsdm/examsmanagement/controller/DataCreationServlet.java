@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -46,12 +47,12 @@ public class DataCreationServlet extends HttpServlet {
         // 2. Créer les examens en utilisant l'admin déjà sauvegardé
         Exam exam1 = new Exam();
         exam1.setTitre("JEE Exam 1");
-        exam1.setDeadline(LocalDateTime.now().plusDays(5));
+        exam1.setDeadline(LocalDate.now().plusDays(5));
         exam1.setAdmin(admin);
 
         Exam exam2 = new Exam();
         exam2.setTitre("JEE Exam 2");
-        exam2.setDeadline(LocalDateTime.now().plusDays(5));
+        exam2.setDeadline(LocalDate.now().plusDays(5));
         exam2.setAdmin(admin);
 
         // 3. Sauvegarder les examens
