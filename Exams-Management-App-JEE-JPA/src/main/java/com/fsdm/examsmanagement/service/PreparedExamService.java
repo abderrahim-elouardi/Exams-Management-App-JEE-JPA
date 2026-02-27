@@ -4,6 +4,7 @@ import com.fsdm.examsmanagement.dao.core.AbstractGeneriqueDAO;
 import com.fsdm.examsmanagement.dao.exam.ExamDAO;
 import com.fsdm.examsmanagement.dao.question.QAnswerDAOImp;
 import com.fsdm.examsmanagement.dao.question.QuestionerDAOImp;
+import com.fsdm.examsmanagement.dao.student.StudentDAO;
 import com.fsdm.examsmanagement.dao.student.StudentDAOImp;
 import com.fsdm.examsmanagement.model.*;
 import com.fsdm.examsmanagement.strategy.CreateQuestioner;
@@ -33,7 +34,7 @@ public class PreparedExamService {
     @EJB
     private QuestionerDAOImp questionerDAOImp;
     @EJB
-    private StudentDAOImp studentDAOImp;
+    private StudentDAO studentDAO;
     public boolean createExam(String titleExam, LocalDate deadline, Part filePart, User user) {
         Exam exam = new Exam();
         exam.setTitre(titleExam);
@@ -73,9 +74,9 @@ public class PreparedExamService {
     }
     private void configureStudent(Exam exam, List<Long> idStudents){
         for (Long idStudent : idStudents){
-            Student student = studentDAOImp.findById(idStudent);
+            Student student = studentDAO.findById(idStudent);
             student.getExamList().add(exam);
-            studentDAOImp.save(student);
+            studentDAO.save(student);
         }
     }
 }
