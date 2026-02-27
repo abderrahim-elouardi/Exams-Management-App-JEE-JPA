@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 /**
- * Represents one possible answer for a multiple-choice question.
+ * Représente une réponse possible pour une question à choix multiple.
  */
 public class QCMAnswer {
     /**
-     * Unique identifier of the answer.
+     * Identifiant unique de la réponse.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,19 +23,19 @@ public class QCMAnswer {
     private Long id;
 
     /**
-     * Text content of the answer.
+     * Texte de la réponse.
      */
     @Column(name = "answer")
     private String answer;
 
     /**
-     * Status of the answer (for example correct or incorrect).
+     * Statut de la réponse (par exemple correcte ou incorrecte).
      */
     @Column(name = "status")
     private int status;
 
     /**
-     * Multiple-choice question that owns this answer.
+     * Question à choix multiple liée à cette réponse.
      */
     @ManyToOne
     @JoinColumn(name = "qcmid")

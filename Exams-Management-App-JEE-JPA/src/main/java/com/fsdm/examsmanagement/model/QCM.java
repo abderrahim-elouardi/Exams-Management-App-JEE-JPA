@@ -16,11 +16,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 /**
- * Represents a multiple-choice question with a list of possible answers.
+ * Représente une question à choix multiple avec une liste de réponses possibles.
  */
 public class QCM extends Questioner {
     /**
-     * List of possible answers for this multiple-choice question.
+     * Liste des réponses possibles pour cette question à choix multiple.
      */
     @OneToMany(mappedBy = "qcm",cascade= CascadeType.ALL)
     private List<QCMAnswer> answerList;

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenue - ExamPrep</title>
+<<<<<<< HEAD
 <%--    <link rel="stylesheet" href="css/index.css">--%>
     <style>
         * {
@@ -157,6 +158,9 @@
             }
         }
     </style>
+=======
+    <link rel="stylesheet" href="css/index.css">
+>>>>>>> d7e05ee (add upload file and interface chose prepared exam)
 </head>
 <body>
 <div class="container">

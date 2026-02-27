@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "qshort")
 /**
- * Represents a short-answer question.
+ * Représente une question à réponse courte.
  */
 public class QShort extends Questioner{
 
