@@ -4,17 +4,25 @@ import com.fsdm.examsmanagement.dao.student.StudentDAO;
 import com.fsdm.examsmanagement.model.Student;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @WebServlet("/convocationPageMauelleController")
+@MultipartConfig(
+    fileSizeThreshold = 1024 * 1024,
+    maxFileSize = 1024 * 1024 * 10,
+    maxRequestSize = 1024 * 1024 * 50
+)
 public class ConvocationPageMauelleController extends HttpServlet {
 
     @EJB
@@ -46,6 +54,24 @@ public class ConvocationPageMauelleController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String title = request.getParameter("exam-title");
+        String deadline = request.getParameter("exam-deadline");
+
+        if (title != null && deadline != null) {
+            Part filePart = request.getPart("exam-file");
+            if (filePart != null && filePart.getSize() > 0) {
+                try (InputStream inputStream = filePart.getInputStream()) {
+                    byte[] fileBytes = inputStream.readAllBytes();
+                    request.getSession(true).setAttribute("pendingExamFileBytes", fileBytes);
+                    request.getSession().setAttribute("pendingExamFileName", filePart.getSubmittedFileName());
+                }
+            }
+            request.getSession().setAttribute("pendingExamTitle", title);
+            request.getSession().setAttribute("pendingExamDeadline", deadline);
+            doGet(request, response);
+            return;
+        }
+
         String[] selectedStudentIds = request.getParameterValues("selectedStudentIds");
         if (selectedStudentIds == null) {
             request.setAttribute("selectedCount", 0);

@@ -38,10 +38,10 @@
         </div>
 
         <div class="actions">
-            <button type="button" onclick="window.location.href='${pageContext.request.contextPath}/ConvocationPage.jsp?mode=upload'">
+            <button type="submit" formaction="${pageContext.request.contextPath}/ConvocationPage.jsp?mode=upload" formmethod="get">
                 Upload IDs des étudiants
             </button>
-            <button type="button" onclick="window.location.href='${pageContext.request.contextPath}/convocationPageMauelleController'">
+            <button type="submit" formaction="${pageContext.request.contextPath}/convocationPageMauelleController" formmethod="post">
                 Ajouter des étudiants manuellement
             </button>
         </div>
