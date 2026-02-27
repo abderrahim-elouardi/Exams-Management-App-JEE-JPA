@@ -21,16 +21,14 @@ public class AfterLoginTeacher extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
-        HttpSession session = req.getSession(true);
-        PrintWriter out = resp.getWriter();
+        HttpSession session = req.getSession(false);
         if(session ==null){
             req.getRequestDispatcher("/WEB-INF/jsp/AuthenticationError.jsp").forward(req, resp);
         }
         else{
-            //recuperation de la liste des exams
-            Administrator admin = administratorDAO.findByEmailAndPassword("username@gmail.com", "password");
-            session.setAttribute("admin",admin);
+            Administrator admin = (Administrator) session.getAttribute("admin");
             session.setAttribute("exams",admin.getExamList());
+            System.out.println(admin.getExamList().toArray().length);
             req.getRequestDispatcher("/WEB-INF/jsp/AfterLoginJspPageTeacher.jsp").forward(req, resp);
         }
     }
