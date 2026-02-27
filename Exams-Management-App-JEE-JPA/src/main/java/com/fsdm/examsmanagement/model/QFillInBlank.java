@@ -6,7 +6,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "qfillinblank")
 /**
- * Represents a fill-in-the-blank question.
+ * Représente une question à trou.
  */
 public class QFillInBlank extends Questioner{
 }

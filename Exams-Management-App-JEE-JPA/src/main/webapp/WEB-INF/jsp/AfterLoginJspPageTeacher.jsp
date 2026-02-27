@@ -228,7 +228,7 @@
         <div class="navbar-brand">MyApp</div>
         <div class="navbar-right">
             <div class="welcome-message">Bienvenue,Professeur <%=((Administrator)session.getAttribute("admin")).getFirstName()+((Administrator)session.getAttribute("admin")).getFirstName()%></div>
-            <a href="${pageContext.request.contextPath}/preparerExam.jsp" class="logout-btn">Preparer un Examen</a>
+            <a href="${pageContext.request.contextPath}/choixPreparationExam.jsp" class="logout-btn">Preparer un Examen</a>
             <form action="deconnection" method="POST">
                 <button class="logout-btn">Déconnexion</button>
             </form>

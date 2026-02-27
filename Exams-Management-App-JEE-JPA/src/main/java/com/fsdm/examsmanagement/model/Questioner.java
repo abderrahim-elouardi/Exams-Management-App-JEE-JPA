@@ -13,11 +13,11 @@ import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 /**
- * Base class for all question types in the exam system.
+ * Classe de base pour tous les types de questions dans le système d'examen.
  */
 public abstract class Questioner {
     /**
-     * Unique identifier of the question.
+     * Identifiant unique de la question.
      */
     @Id
     @Column(name = "questionerid")
@@ -25,23 +25,26 @@ public abstract class Questioner {
     private Long id;
 
     /**
-     * Number of points given for this question.
+     * Nombre de points attribués à cette question.
      */
     @Column(name = "point")
     private int point;
 
     /**
-     * Text of the question shown to the student.
+     * Texte de la question affichée à l'étudiant.
      */
     @Column(name = "question")
     private String question;
 
     /**
-     * Allowed time to answer this question.
+     * Temps autorisé pour répondre à cette question.
      */
     @Column(name = "responsetime")
     private Date responseTime;
 
+    /**
+     * Examen auquel cette question appartient.
+     */
     @ManyToOne
     @JoinColumn(name = "examenid")
     private Exam exam;
