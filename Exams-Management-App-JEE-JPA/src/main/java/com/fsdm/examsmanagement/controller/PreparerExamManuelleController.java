@@ -139,5 +139,6 @@ public class PreparerExamManuelleController extends HttpServlet {
         examDAO.save(exam);
         out.println(administratorDAO.findByEmailAndPassword("username@gmail.com","password"));
 
+        request.getRequestDispatcher("/convocationPage.jsp").forward(request, response);
     }
 }
