@@ -15,7 +15,7 @@
     </div>
 
     <div class="login-form">
-        <a class="submit-btn" style="display:block;text-align:center;text-decoration:none;margin-bottom:12px;" href="${pageContext.request.contextPath}/preparerExam.jsp?mode=manual">Configuration manuelle</a>
+        <a class="submit-btn" style="display:block;text-align:center;text-decoration:none;margin-bottom:12px;" href="${pageContext.request.contextPath}/preparerExamManuelle.jsp?mode=manual">Configuration manuelle</a>
         <a class="submit-btn" style="display:block;text-align:center;text-decoration:none;" href="${pageContext.request.contextPath}/preparerExam.jsp?mode=upload">Upload fichier</a>
     </div>
 

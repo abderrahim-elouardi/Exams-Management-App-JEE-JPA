@@ -158,6 +158,23 @@
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
         }
 
+        textarea {
+            width: 100%;
+            min-height: 160px;
+            border: 2px solid #d8dcf8;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 14px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #764ba2;
+            box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.12);
+        }
+
         .info-text {
             font-size: 12px;
             color: #999;

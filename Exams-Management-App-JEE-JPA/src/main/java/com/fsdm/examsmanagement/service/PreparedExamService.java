@@ -35,12 +35,14 @@ public class PreparedExamService {
     private QuestionerDAOImp questionerDAOImp;
     @EJB
     private StudentDAO studentDAO;
-    public boolean createExam(String titleExam, LocalDate deadline, Part filePart, User user) {
+    public boolean createExam(String titleExam, LocalDate deadline, Part filePart, User user, List<Long> idStudents) {
         Exam exam = new Exam();
         exam.setTitre(titleExam);
         exam.setDeadline(deadline);
         exam.setAdmin((Administrator) user);
         examDAO.save(exam);
+        configureQuestion(exam, filePart);
+        configureStudent(exam, idStudents);
         return true;
     }
     private CreateQuestioner getTypeQuestion(String ligne){

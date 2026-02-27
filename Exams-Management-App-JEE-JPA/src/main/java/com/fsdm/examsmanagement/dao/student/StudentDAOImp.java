@@ -49,18 +49,24 @@ public class StudentDAOImp implements StudentDAO {
 
     @Override
     public List<Student> findAll() {
-        String jpql = "SELECT u FROM User u";
+        String jpql = "SELECT s FROM Student s ORDER BY s.id";
         return em.createQuery(jpql, Student.class).getResultList();
     }
 
     @Override
     public List<Student> findPaginated(int page, int pageSize) {
         return em.createQuery(
-                        "SELECT u FROM User u ORDER BY u.id",
+                        "SELECT s FROM Student s ORDER BY s.id",
                         Student.class
                 )
                 .setFirstResult((page - 1) * pageSize) // offset
                 .setMaxResults(pageSize)               // limit
                 .getResultList();
+    }
+
+    @Override
+    public long countStudents() {
+        return em.createQuery("SELECT COUNT(s) FROM Student s", Long.class)
+                .getSingleResult();
     }
 }
