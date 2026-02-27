@@ -15,6 +15,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -33,7 +34,7 @@ public class PreparedExamService {
     private QuestionerDAOImp questionerDAOImp;
     @EJB
     private StudentDAOImp studentDAOImp;
-    public boolean createExam(String titleExam, LocalDateTime deadline, Part filePart, User user) {
+    public boolean createExam(String titleExam, LocalDate deadline, Part filePart, User user) {
         Exam exam = new Exam();
         exam.setTitre(titleExam);
         exam.setDeadline(deadline);
