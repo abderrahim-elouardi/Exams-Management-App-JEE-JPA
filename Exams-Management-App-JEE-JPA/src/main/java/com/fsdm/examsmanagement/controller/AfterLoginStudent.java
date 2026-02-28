@@ -1,6 +1,7 @@
 package com.fsdm.examsmanagement.controller;
 
 import com.fsdm.examsmanagement.dao.student.StudentDAO;
+import com.fsdm.examsmanagement.model.Administrator;
 import com.fsdm.examsmanagement.model.Student;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
@@ -28,10 +29,9 @@ public class AfterLoginStudent extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/jsp/AuthenticationError.jsp").forward(req, resp);
         }
         else{
-            //recuperation de la liste des exams
-            Student student = studentDAO.findByEmailAndPassword("username", "password");
-            session.setAttribute("student",student);
+            Student student = (Student) session.getAttribute("student");
             session.setAttribute("exams",student.getExamList());
+            session.setAttribute("passed_exams",student.getPassedExamList());
             req.getRequestDispatcher("/WEB-INF/jsp/AfterLoginJspPageStudent.jsp").forward(req, resp);
         }
     }

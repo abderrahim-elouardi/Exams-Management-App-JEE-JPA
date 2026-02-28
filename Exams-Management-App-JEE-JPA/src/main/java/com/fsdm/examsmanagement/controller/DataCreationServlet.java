@@ -74,13 +74,14 @@ public class DataCreationServlet extends HttpServlet {
 
         Student student = new Student();
         student.setCne("n13245567");
-        student.setEmail("username");
+        student.setEmail("username@gmai.com");
         student.setPassword("password");
         student.setFirstName("abderrahim");
         student.setLastName("el ouardi");
 
 
-        student.setExamList(List.of(exam1,exam2));
+        student.setExamList(List.of(exam1));
+        student.setPassedExamList(List.of(exam2));
         studentDAO.save(student);
         System.out.println("student was saved");
 

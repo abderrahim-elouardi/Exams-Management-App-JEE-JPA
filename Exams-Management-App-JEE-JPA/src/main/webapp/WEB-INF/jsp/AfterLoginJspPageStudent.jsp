@@ -218,6 +218,98 @@
                 font-size: 0.75rem;
             }
         }
+        .danger {
+            /* Couleur de fond principale (Rouge "Flat UI") */
+            background-color: #dc3545;
+
+            /* Couleur du texte */
+            color: #ffffff;
+            border: #8080806b 5px solid;
+            /* Style du bouton */
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Effet au survol (devient un peu plus foncé) */
+        .danger:hover {
+            background-color: #c82333;
+        }
+
+        /* Effet au clic (devient encore plus foncé) */
+        .danger:active {
+            background-color: #bd2130;
+        }
+
+        .success {
+            /* Couleur de fond principale (Vert "Bootstrap Style") */
+            background-color: #28a745;
+
+            /* Couleur du texte */
+            color: #ffffff;
+
+            /* Style du bouton */
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+            border: #8080806b 5px solid;
+        }
+
+        /* Effet au survol (devient un peu plus foncé) */
+        .success:hover {
+            background-color: #218838;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Effet au clic */
+        .success:active {
+            background-color: #1e7e34;
+            transform: translateY(1px);
+        }
+
+        .stat_th {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .primary {
+            /* Bleu "Bootstrap Style" */
+            background-color: #007bff;
+
+            /* Couleur du texte */
+            color: #ffffff;
+
+            /* Style commun aux boutons */
+            padding: 10px 20px;
+            border: #8080806b 5px solid;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.2s ease-in-out;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        /* Effet au survol (devient un bleu plus soutenu) */
+        .primary:hover {
+            background-color: #0069d9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Effet au clic */
+        .primary:active {
+            background-color: #0062cc;
+            transform: scale(0.98); /* Petit effet d'enfoncement */
+        }
     </style>
 </head>
 <body>
@@ -227,7 +319,7 @@
         <div class="navbar-brand">MyApp</div>
         <div class="navbar-right">
             <div class="welcome-message">Bienvenue, <%=((Student)session.getAttribute("student")).getFirstName()+((Student)session.getAttribute("student")).getFirstName()%></div>
-            <form action="deconnection" method="POST">
+            <form action="${pageContext.request.contextPath}/deconnection" method="POST">
                 <button class="logout-btn">Déconnexion</button>
             </form>
         </div>
@@ -244,6 +336,8 @@
             <th>Titre</th>
             <th>DeadLine</th>
             <th>Administrateur</th>
+            <th>état</th>
+            <th>commencer</th>
         </tr>
         </thead>
         <tbody>
@@ -252,6 +346,23 @@
                 <td>${exam.titre}</td>
                 <td>${exam.deadline.toString()}</td>
                 <td>${exam.admin.firstName} ${exam.admin.lastName}</td>
+                <th class="stat_th">
+                    <div class="danger">pas en cours</div>
+                </th>
+                <th></th>
+            </tr>
+        </c:forEach>
+        <c:forEach var="exam" items="${sessionScope.passed_exams}">
+            <tr>
+                <td>${exam.titre}</td>
+                <td>${exam.deadline.toString()}</td>
+                <td>${exam.admin.firstName} ${exam.admin.lastName}</td>
+                <th class="stat_th">
+                    <div class="success">pas en cours</div>
+                </th>
+                <th class="stat_th">
+                    <div class="primary"><a href="">commencer</a></div>
+                </th>
             </tr>
         </c:forEach>
         </tbody>
