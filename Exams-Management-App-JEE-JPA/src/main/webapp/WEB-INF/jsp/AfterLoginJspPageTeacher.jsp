@@ -246,6 +246,7 @@
             <th>Titre</th>
             <th>DeadLine</th>
             <th>Administrateur</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -254,6 +255,9 @@
                 <td>${exam.titre}</td>
                 <td>${exam.deadline.toString()}</td>
                 <td>${exam.admin.firstName} ${exam.admin.lastName}</td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/examDetails?idExam=${exam.idExam}">Voir</a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>

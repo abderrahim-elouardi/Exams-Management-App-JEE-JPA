@@ -19,7 +19,7 @@ public class QShortAnswer {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "QShortId")
+    @Column(name = "QShortAnswerId")
     private Long id;
 
     /**

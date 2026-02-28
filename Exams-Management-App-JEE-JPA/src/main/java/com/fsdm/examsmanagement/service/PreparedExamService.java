@@ -1,11 +1,8 @@
 package com.fsdm.examsmanagement.service;
 
-import com.fsdm.examsmanagement.dao.core.AbstractGeneriqueDAO;
 import com.fsdm.examsmanagement.dao.exam.ExamDAO;
-import com.fsdm.examsmanagement.dao.question.QAnswerDAOImp;
 import com.fsdm.examsmanagement.dao.question.QuestionerDAOImp;
 import com.fsdm.examsmanagement.dao.student.StudentDAO;
-import com.fsdm.examsmanagement.dao.student.StudentDAOImp;
 import com.fsdm.examsmanagement.model.*;
 import com.fsdm.examsmanagement.strategy.CreateQuestioner;
 import jakarta.ejb.EJB;
@@ -15,12 +12,13 @@ import jakarta.servlet.http.Part;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.file.Path;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
+/**
+ * Service qui prépare un examen.
+ * Il crée l'examen, lit les questions et l'associe aux étudiants.
+ */
 @Stateless
 public class PreparedExamService {
     @EJB(beanName = "CreateQCM")
@@ -35,16 +33,36 @@ public class PreparedExamService {
     private QuestionerDAOImp questionerDAOImp;
     @EJB
     private StudentDAO studentDAO;
+
+    /**
+     * Crée un examen puis ajoute ses questions et ses étudiants.
+     *
+     * @param titleExam titre de l'examen
+     * @param deadline date limite de l'examen
+     * @param filePart fichier contenant les questions
+     * @param user utilisateur connecté (administrateur)
+     * @param idStudents liste des ids des étudiants
+     * @return true si l'opération est terminée
+     */
     public boolean createExam(String titleExam, LocalDate deadline, Part filePart, User user, List<Long> idStudents) {
         Exam exam = new Exam();
         exam.setTitre(titleExam);
         exam.setDeadline(deadline);
-        exam.setAdmin((Administrator) user);
+        Administrator administrator = (Administrator) user;
+        exam.setAdmin(administrator);
         examDAO.save(exam);
+        administrator.getExamList().add(exam);
         configureQuestion(exam, filePart);
         configureStudent(exam, idStudents);
         return true;
     }
+
+    /**
+     * Détermine le type de question selon le format de la ligne.
+        *
+        * @param ligne ligne lue depuis le fichier des questions
+        * @return la stratégie de création adaptée, ou null si le format est inconnu
+     */
     private CreateQuestioner getTypeQuestion(String ligne){
         String qcmPattern = "^.+\\|.+(,.+)+\\|\\d+$";
         String trouPattern = ".*\\.\\.\\.\\.\\.\\..*";
@@ -60,6 +78,13 @@ public class PreparedExamService {
         }
         return null;
     }
+
+    /**
+     * Lit le fichier et enregistre chaque question reconnue.
+        *
+        * @param exam examen auquel les questions seront liées
+        * @param filePart fichier uploadé contenant les questions
+     */
     private void configureQuestion(Exam exam, Part filePart){
         try (BufferedReader reader =
                      new BufferedReader(new InputStreamReader(filePart.getInputStream()))) {
@@ -67,13 +92,23 @@ public class PreparedExamService {
                 CreateQuestioner createQuestioner = getTypeQuestion(ligne);
                 if (createQuestioner != null) {
                     Questioner questioner = createQuestioner.construireQuestioner(ligne);
-                    questioner.setExam(exam);
+                    if (questioner != null) {
+                        questioner.setExam(exam);
+                        questionerDAOImp.save(questioner);
+                    }
                 }
             });
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * Lie l'examen à tous les étudiants sélectionnés.
+        *
+        * @param exam examen à affecter
+        * @param idStudents liste des identifiants des étudiants
+     */
     private void configureStudent(Exam exam, List<Long> idStudents){
         for (Long idStudent : idStudents){
             Student student = studentDAO.findById(idStudent);

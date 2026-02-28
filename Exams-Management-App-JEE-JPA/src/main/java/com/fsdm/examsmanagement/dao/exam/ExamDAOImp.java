@@ -51,6 +51,31 @@ public class ExamDAOImp implements ExamDAO {
     }
 
     @Override
+    public Exam findExamWithDetails(Long idExam) {
+        String examWithQuestionsJpql = "SELECT DISTINCT e FROM Exam e " +
+            "LEFT JOIN FETCH e.questioner " +
+            "WHERE e.idExam = :idExam";
+
+        try {
+            Exam exam = em.createQuery(examWithQuestionsJpql, Exam.class)
+                    .setParameter("idExam", idExam)
+                    .getSingleResult();
+
+            List<Student> students = em.createQuery(
+                    "SELECT DISTINCT s FROM Student s JOIN s.examList e WHERE e.idExam = :idExam",
+                    Student.class
+                )
+                .setParameter("idExam", idExam)
+                .getResultList();
+
+            exam.setStudentList(students);
+            return exam;
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
     public List<Exam> findAll() {
         String jpql = "SELECT u FROM Exam u";
         return em.createQuery(jpql, Exam.class).getResultList();

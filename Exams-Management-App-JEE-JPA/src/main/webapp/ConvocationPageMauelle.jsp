@@ -38,7 +38,7 @@
   <div class="message"><%= selectedCount %> étudiant(s) coché(s).</div>
   <% } %>
 
-  <form method="post" action="${pageContext.request.contextPath}/convocationPageMauelleController?page=<%= currentPage %>">
+  <form method="post" action="${pageContext.request.contextPath}/preparerExamController">
     <table>
       <thead>
       <tr>
@@ -67,7 +67,7 @@
     </table>
 
     <div class="submit-zone">
-      <button type="submit">Valider les étudiants cochés</button>
+      <button type="submit">Créer l'examen avec les étudiants cochés</button>
     </div>
   </form>
 

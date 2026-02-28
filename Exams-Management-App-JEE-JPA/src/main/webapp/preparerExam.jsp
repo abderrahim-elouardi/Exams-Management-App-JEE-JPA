@@ -38,10 +38,14 @@
         </div>
 
         <div class="actions">
+<<<<<<< HEAD
             <button type="button" onclick="window.location.href='convocationPage.jsp'">
+=======
+            <button type="submit" formaction="${pageContext.request.contextPath}/ConvocationPage.jsp?mode=upload" formmethod="get">
+>>>>>>> a158a8b96792cf14dc2d46029b24f25a4418dcad
                 Upload IDs des étudiants
             </button>
-            <button type="button" onclick="window.location.href='${pageContext.request.contextPath}/convocationPageMauelleController'">
+            <button type="submit" formaction="${pageContext.request.contextPath}/convocationPageMauelleController" formmethod="post">
                 Ajouter des étudiants manuellement
             </button>
         </div>
