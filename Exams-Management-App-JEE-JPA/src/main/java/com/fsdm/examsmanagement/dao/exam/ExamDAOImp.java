@@ -1,6 +1,10 @@
 package com.fsdm.examsmanagement.dao.exam;
 
 import com.fsdm.examsmanagement.model.Exam;
+import com.fsdm.examsmanagement.model.QCM;
+import com.fsdm.examsmanagement.model.QFillInBlank;
+import com.fsdm.examsmanagement.model.QShort;
+import com.fsdm.examsmanagement.model.Questioner;
 import com.fsdm.examsmanagement.model.Student;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -67,6 +71,18 @@ public class ExamDAOImp implements ExamDAO {
                 )
                 .setParameter("idExam", idExam)
                 .getResultList();
+
+            if (exam.getQuestioner() != null) {
+                for (Questioner question : exam.getQuestioner()) {
+                    if (question instanceof QCM qcm && qcm.getAnswerList() != null) {
+                        qcm.getAnswerList().size();
+                    } else if (question instanceof QFillInBlank qFillInBlank && qFillInBlank.getQFillInBlankAnswer() != null) {
+                        qFillInBlank.getQFillInBlankAnswer().size();
+                    } else if (question instanceof QShort qShort && qShort.getAnswer() != null) {
+                        qShort.getAnswer().getAnswer();
+                    }
+                }
+            }
 
             exam.setStudentList(students);
             return exam;

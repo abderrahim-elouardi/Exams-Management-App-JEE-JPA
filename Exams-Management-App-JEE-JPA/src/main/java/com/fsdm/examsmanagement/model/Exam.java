@@ -24,6 +24,7 @@ public class Exam {
 
     private String titre;
     private LocalDate deadline;
+    private Integer responseTime;
 
     @ManyToOne
     @JoinColumn(name = "idAdmin")
@@ -47,6 +48,7 @@ public class Exam {
                 "idExam=" + idExam +
                 ", titre='" + titre + '\'' +
                 ", deadline=" + deadline +
+                ", dureeMinutes=" + responseTime +
                 '}';
     }
 }

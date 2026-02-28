@@ -3,6 +3,7 @@ package com.fsdm.examsmanagement.controller;
 import com.fsdm.examsmanagement.dao.administrator.AdministratorDAO;
 import com.fsdm.examsmanagement.dao.exam.ExamDAO;
 import com.fsdm.examsmanagement.model.*;
+import com.fsdm.examsmanagement.security.SessionGuard;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -27,6 +28,9 @@ public class PreparerExamManuelleController extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request , HttpServletResponse response) throws IOException, ServletException {
+        if (!SessionGuard.requireRole(request, response, "admin")) {
+            return;
+        }
         response.setContentType("application/json");
 
         PrintWriter out = response.getWriter();
@@ -134,6 +138,6 @@ public class PreparerExamManuelleController extends HttpServlet {
         examDAO.save(exam);
         admin.getExamList().add(exam);
 
-        request.getRequestDispatcher("/convocationPage.jsp").forward(request, response);
+        request.getRequestDispatcher("ConvocationPage.jsp").forward(request, response);
     }
 }

@@ -37,6 +37,11 @@
             <input type="file" id="exam-file" name="exam-file" accept=".txt" required>
         </div>
 
+        <div class="form-group">
+            <label for="exam-duration">Temps de l'examen (minutes)</label>
+            <input type="number" id="exam-duration" name="exam-duration" min="1" placeholder="Ex: 90" required>
+        </div>
+
         <div class="actions">
             <button type="submit" formaction="${pageContext.request.contextPath}/ConvocationPage.jsp?mode=upload" formmethod="get">
                 Upload IDs des étudiants

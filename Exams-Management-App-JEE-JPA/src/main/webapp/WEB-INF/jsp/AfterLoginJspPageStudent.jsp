@@ -132,6 +132,18 @@
             font-size: 0.95rem;
         }
 
+        .status-col,
+        .action-col {
+            text-align: center;
+            width: 180px;
+        }
+
+        .status-cell,
+        .action-cell {
+            text-align: center;
+            vertical-align: middle;
+        }
+
         tbody tr {
             transition: all 0.3s ease;
         }
@@ -231,6 +243,7 @@
             cursor: pointer;
             font-weight: bold;
             transition: background-color 0.3s ease;
+            display: inline-block;
         }
 
         /* Effet au survol (devient un peu plus foncé) */
@@ -275,7 +288,7 @@
         }
 
         .stat_th {
-            display: flex;
+            display: inline-flex;
             justify-content: center;
             align-items: center;
         }
@@ -299,6 +312,12 @@
             text-decoration: none;
         }
 
+        .primary a {
+            color: inherit;
+            text-decoration: none;
+            display: inline-block;
+        }
+
         /* Effet au survol (devient un bleu plus soutenu) */
         .primary:hover {
             background-color: #0069d9;
@@ -318,7 +337,7 @@
     <div class="navbar-container">
         <div class="navbar-brand">MyApp</div>
         <div class="navbar-right">
-            <div class="welcome-message">Bienvenue, <%=((Student)session.getAttribute("student")).getFirstName()+((Student)session.getAttribute("student")).getFirstName()%></div>
+            <div class="welcome-message">Bienvenue, <%=((Student)session.getAttribute("student")).getLastName()+" "+((Student)session.getAttribute("student")).getFirstName()%></div>
             <form action="${pageContext.request.contextPath}/deconnection" method="POST">
                 <button class="logout-btn">Déconnexion</button>
             </form>
@@ -336,8 +355,9 @@
             <th>Titre</th>
             <th>DeadLine</th>
             <th>Administrateur</th>
-            <th>état</th>
-            <th>commencer</th>
+            <th class="status-col">Note</th>
+            <th class="status-col">état</th>
+            <th class="action-col">commencer</th>
         </tr>
         </thead>
         <tbody>
@@ -346,10 +366,13 @@
                 <td>${exam.titre}</td>
                 <td>${exam.deadline.toString()}</td>
                 <td>${exam.admin.firstName} ${exam.admin.lastName}</td>
-                <th class="stat_th">
-                    <div class="danger">pas en cours</div>
-                </th>
-                <th></th>
+                <td class="status-cell">-</td>
+                <td class="status-cell">
+                    <div class="danger stat_th">pas encore</div>
+                </td>
+                <td class="action-cell">
+                    <div class="primary"><a href="${pageContext.request.contextPath}/startExamStudent?idExam=${exam.idExam}">commencer</a></div>
+                </td>
             </tr>
         </c:forEach>
         <c:forEach var="exam" items="${sessionScope.passed_exams}">
@@ -357,12 +380,11 @@
                 <td>${exam.titre}</td>
                 <td>${exam.deadline.toString()}</td>
                 <td>${exam.admin.firstName} ${exam.admin.lastName}</td>
-                <th class="stat_th">
-                    <div class="success">pas en cours</div>
-                </th>
-                <th class="stat_th">
-                    <div class="primary"><a href="">commencer</a></div>
-                </th>
+                <td class="status-cell">${sessionScope.passed_exam_notes[exam.idExam]}</td>
+                <td class="status-cell">
+                    <div class="success stat_th">déjà passée</div>
+                </td>
+                <td class="action-cell"></td>
             </tr>
         </c:forEach>
         </tbody>

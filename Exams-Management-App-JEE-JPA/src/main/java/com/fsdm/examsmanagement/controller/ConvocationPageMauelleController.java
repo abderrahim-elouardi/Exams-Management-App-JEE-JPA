@@ -63,8 +63,9 @@ public class ConvocationPageMauelleController extends HttpServlet {
         }
         String title = request.getParameter("exam-title");
         String deadline = request.getParameter("exam-deadline");
+        String duration = request.getParameter("exam-duration");
 
-        if (title != null && deadline != null) {
+        if (title != null && deadline != null && duration != null) {
             Part filePart = request.getPart("exam-file");
             if (filePart != null && filePart.getSize() > 0) {
                 try (InputStream inputStream = filePart.getInputStream()) {
@@ -75,6 +76,7 @@ public class ConvocationPageMauelleController extends HttpServlet {
             }
             request.getSession().setAttribute("pendingExamTitle", title);
             request.getSession().setAttribute("pendingExamDeadline", deadline);
+            request.getSession().setAttribute("pendingExamDuration", duration);
             doGet(request, response);
             return;
         }

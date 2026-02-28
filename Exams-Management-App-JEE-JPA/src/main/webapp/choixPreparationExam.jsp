@@ -19,7 +19,7 @@
         <a class="submit-btn" style="display:block;text-align:center;text-decoration:none;" href="${pageContext.request.contextPath}/preparerExam.jsp?mode=upload">Upload fichier</a>
     </div>
 
-    <a class="back-link" href="${pageContext.request.contextPath}/index.jsp">Retour</a>
+    <a class="back-link" href="${pageContext.request.contextPath}/afterLoginTeacher">Retour</a>
 </div>
 </body>
 </html>

@@ -227,7 +227,7 @@
     <div class="navbar-container">
         <div class="navbar-brand">MyApp</div>
         <div class="navbar-right">
-            <div class="welcome-message">Bienvenue,Professeur <%=((Administrator)session.getAttribute("admin")).getFirstName()+((Administrator)session.getAttribute("admin")).getFirstName()%></div>
+            <div class="welcome-message">Bienvenue,Professeur <%=((Administrator)session.getAttribute("admin")).getLastName()+" "+((Administrator)session.getAttribute("admin")).getFirstName()%></div>
             <button class="logout-btn"><a href="${pageContext.request.contextPath}/choixPreparationExam.jsp">Preparer un Examen</a></button>
             <form action="deconnection" method="POST">
                 <button class="logout-btn">Déconnexion</button>

@@ -2,6 +2,7 @@ package com.fsdm.examsmanagement.controller;
 
 import com.fsdm.examsmanagement.dao.student.StudentDAO;
 import com.fsdm.examsmanagement.model.Student;
+import com.fsdm.examsmanagement.security.SessionGuard;
 import jakarta.ejb.EJB;
 
 import jakarta.servlet.ServletException;
@@ -36,6 +37,9 @@ public class CallStudentController extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request , HttpServletResponse response) throws IOException, ServletException {
+        if (!SessionGuard.requireRole(request, response, "admin")) {
+            return;
+        }
         PrintWriter out = response.getWriter();
         Part filePart = request.getPart("student-file");
         BufferedReader reader = new BufferedReader(

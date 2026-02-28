@@ -37,12 +37,6 @@ public abstract class Questioner {
     private String question;
 
     /**
-     * Temps autorisé pour répondre à cette question.
-     */
-    @Column(name = "responsetime")
-    private Date responseTime;
-
-    /**
      * Examen auquel cette question appartient.
      */
     @ManyToOne
@@ -55,7 +49,6 @@ public abstract class Questioner {
                 "id=" + id +
                 ", point=" + point +
                 ", question='" + question + '\'' +
-                ", responseTime=" + responseTime +
                 ", exam=" + exam +
                 '}';
     }

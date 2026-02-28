@@ -2,6 +2,7 @@ package com.fsdm.examsmanagement.controller;
 
 import com.fsdm.examsmanagement.dao.administrator.AdministratorDAO;
 import com.fsdm.examsmanagement.model.Administrator;
+import com.fsdm.examsmanagement.security.SessionGuard;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,6 +20,9 @@ public class AfterLoginTeacher extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (!SessionGuard.requireRole(req, resp, "admin")) {
+            return;
+        }
         resp.setContentType("text/html;charset=UTF-8");
         HttpSession session = req.getSession(false);
         if(session ==null){

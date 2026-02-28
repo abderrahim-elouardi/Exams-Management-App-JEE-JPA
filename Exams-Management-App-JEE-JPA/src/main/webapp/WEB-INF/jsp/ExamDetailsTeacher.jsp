@@ -13,6 +13,7 @@
         <h1>Détails de l'examen</h1>
         <p class="meta"><strong>Titre :</strong> ${exam.titre}</p>
         <p class="meta"><strong>Deadline :</strong> ${exam.deadline}</p>
+        <p class="meta"><strong>temps de reponse :</strong> ${exam.responseTime}</p>
         <a class="back-link" href="${pageContext.request.contextPath}/afterLoginTeacher">← Retour</a>
     </div>
 

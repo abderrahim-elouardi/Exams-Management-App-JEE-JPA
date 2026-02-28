@@ -48,6 +48,7 @@ public class PreparerExamController extends HttpServlet {
         }
         String title = request.getParameter("exam-title");
         String deadlineValue = request.getParameter("exam-deadline");
+        String durationValue = request.getParameter("exam-duration");
 
         Part filePart = null;
         String contentType = request.getContentType();
@@ -62,6 +63,9 @@ public class PreparerExamController extends HttpServlet {
         if (deadlineValue == null || deadlineValue.isBlank()) {
             deadlineValue = (String) request.getSession().getAttribute("pendingExamDeadline");
         }
+        if (durationValue == null || durationValue.isBlank()) {
+            durationValue = (String) request.getSession().getAttribute("pendingExamDuration");
+        }
 
         if (filePart == null || filePart.getSize() == 0) {
             byte[] pendingFileBytes = (byte[]) request.getSession().getAttribute("pendingExamFileBytes");
@@ -71,8 +75,10 @@ public class PreparerExamController extends HttpServlet {
             }
         }
 
-        if (title == null || title.isBlank() || deadlineValue == null || deadlineValue.isBlank() || filePart == null) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing exam data (title, deadline or file)");
+        Integer durationMinutes = parsePositiveInt(durationValue);
+
+        if (title == null || title.isBlank() || deadlineValue == null || deadlineValue.isBlank() || filePart == null || durationMinutes == null) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing exam data (title, deadline, duration or file)");
             return;
         }
 
@@ -86,14 +92,27 @@ public class PreparerExamController extends HttpServlet {
 
         Administrator admin = (Administrator) request.getSession().getAttribute("admin");
         LocalDate deadline = LocalDate.parse(deadlineValue);
-        preparedExamService.createExam(title, deadline, filePart, admin, idStudents);
+        preparedExamService.createExam(title, deadline, durationMinutes, filePart, admin, idStudents);
 
         request.getSession().removeAttribute("pendingExamTitle");
         request.getSession().removeAttribute("pendingExamDeadline");
+        request.getSession().removeAttribute("pendingExamDuration");
         request.getSession().removeAttribute("pendingExamFileBytes");
         request.getSession().removeAttribute("pendingExamFileName");
 
         response.sendRedirect(request.getContextPath() + "/afterLoginTeacher");
+    }
+
+    private Integer parsePositiveInt(String value) {
+        if (value == null || value.isBlank()) {
+            return null;
+        }
+        try {
+            int parsed = Integer.parseInt(value);
+            return parsed > 0 ? parsed : null;
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 
     /**

@@ -46,7 +46,7 @@
         <button type="submit" class="submit-btn">Se connecter</button>
     </form>
 
-    <a class="back-link" href="${pageContext.request.contextPath}/index.jsp">Retour au choix du rôle</a>
+    <a class="back-link" href="${pageContext.request.contextPath}/professeur-etudiant-choix-role.jsp">Retour au choix du rôle</a>
 
     <% if (loginSuccess != null && loginSuccess) { %>
         <p class="success-text">Test d'authentification terminé avec succès.</p>

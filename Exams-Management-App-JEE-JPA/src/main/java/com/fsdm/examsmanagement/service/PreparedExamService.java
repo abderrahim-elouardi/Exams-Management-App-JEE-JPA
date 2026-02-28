@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,15 +40,17 @@ public class PreparedExamService {
      *
      * @param titleExam titre de l'examen
      * @param deadline date limite de l'examen
+     * @param responseTime durée de l'examen en minutes
      * @param filePart fichier contenant les questions
      * @param user utilisateur connecté (administrateur)
      * @param idStudents liste des ids des étudiants
      * @return true si l'opération est terminée
      */
-    public boolean createExam(String titleExam, LocalDate deadline, Part filePart, User user, List<Long> idStudents) {
+    public boolean createExam(String titleExam, LocalDate deadline, Integer responseTime, Part filePart, User user, List<Long> idStudents) {
         Exam exam = new Exam();
         exam.setTitre(titleExam);
         exam.setDeadline(deadline);
+        exam.setResponseTime(responseTime);
         Administrator administrator = (Administrator) user;
         exam.setAdmin(administrator);
         examDAO.save(exam);
@@ -112,7 +115,28 @@ public class PreparedExamService {
     private void configureStudent(Exam exam, List<Long> idStudents){
         for (Long idStudent : idStudents){
             Student student = studentDAO.findById(idStudent);
+
+            if (student.getExamList() == null) {
+                student.setExamList(new ArrayList<>());
+            }
             student.getExamList().add(exam);
+
+            ExamNote examNote = new ExamNote();
+            examNote.setExam(exam);
+            examNote.setStudent(student);
+            examNote.setNote(0f);
+            examNote.setStatus(false);
+
+            if (student.getQuestions() == null) {
+                student.setQuestions(new ArrayList<>());
+            }
+            student.getQuestions().add(examNote);
+
+            if (exam.getExamStudent() == null) {
+                exam.setExamStudent(new ArrayList<>());
+            }
+            exam.getExamStudent().add(examNote);
+
             studentDAO.save(student);
         }
     }

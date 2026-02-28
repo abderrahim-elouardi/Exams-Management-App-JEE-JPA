@@ -16,6 +16,7 @@ import java.util.List;
 @Table(name="EXAMSTUDENT")
 public class ExamNote {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private float note;
     private boolean status;
