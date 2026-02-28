@@ -38,7 +38,7 @@
   <div class="message"><%= selectedCount %> étudiant(s) coché(s).</div>
   <% } %>
 
-  <form id="manualSelectionForm" method="post" action="${pageContext.request.contextPath}/preparerExamController">
+  <form id="manualSelectionForm" method="post" action="${pageContext.request.contextPath}/convocationPageMauelleController">
     <table>
       <thead>
       <tr>

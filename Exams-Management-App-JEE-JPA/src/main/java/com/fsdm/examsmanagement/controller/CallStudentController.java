@@ -50,9 +50,9 @@ public class CallStudentController extends HttpServlet {
             Student student = studentDAO.findById((long) Integer.parseInt(studentId));
             if(student!=null){
                 String studentEmail = student.getEmail();
-                final String from = "tonemail@gmail.com";
-                final String password = "MOT_DE_PASSE_APPLICATION";
-                String to = "destinataire@gmail.com";
+                final String from = "krimoaouad4@gmail.com";
+                final String password = "wxaiucxdpttjggsm";
+                String to = student.getEmail();
 
                 Properties props = new Properties();
                 props.put("mail.smtp.host", "smtp.gmail.com");

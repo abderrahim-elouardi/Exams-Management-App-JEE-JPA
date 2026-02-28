@@ -3,6 +3,7 @@ package com.fsdm.examsmanagement.controller;
 import com.fsdm.examsmanagement.dao.student.StudentDAO;
 import com.fsdm.examsmanagement.model.Student;
 import com.fsdm.examsmanagement.security.SessionGuard;
+import com.fsdm.examsmanagement.service.CallStudentService;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -28,6 +29,8 @@ public class ConvocationPageMauelleController extends HttpServlet {
 
     @EJB
     private StudentDAO studentDAO;
+    @EJB
+    private CallStudentService callStudentService;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -89,6 +92,10 @@ public class ConvocationPageMauelleController extends HttpServlet {
                     .map(Long::parseLong)
                     .collect(Collectors.toList());
             request.setAttribute("selectedCount", ids.size());
+
+            callStudentService.sendEmailWithPageManuelle(ids);
+            request.getRequestDispatcher("/preparerExamController").forward(request, response);
+            return;
         }
         doGet(request, response);
     }

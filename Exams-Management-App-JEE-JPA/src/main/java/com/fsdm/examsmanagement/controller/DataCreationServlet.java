@@ -75,7 +75,7 @@ public class DataCreationServlet extends HttpServlet {
 
         Student student = new Student();
         student.setCne("n13245567");
-        student.setEmail("username@gmai.com");
+        student.setEmail("krimokri227@gmail.com");
         student.setPassword(PasswordSecurity.hash("password"));
         student.setFirstName("abderrahim");
         student.setLastName("el ouardi");
