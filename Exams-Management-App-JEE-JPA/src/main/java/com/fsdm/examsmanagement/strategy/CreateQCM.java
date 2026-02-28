@@ -8,8 +8,16 @@ import jakarta.ejb.Stateless;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Cette classe crée une question de type QCM.
+ * Elle transforme une ligne de texte en question avec ses choix.
+ */
 @Stateless
 public class CreateQCM implements CreateQuestioner{
+    /**
+     * Format attendu : question|choix1,choix2,choix3|numeroBonneReponse
+     * Exemple : "Capital du Maroc?|Rabat,Casa,Tanger|1"
+     */
     @Override
     public Questioner construireQuestioner(String line) {
         String[] splitQuestion = line.split("\\|");
@@ -19,7 +27,7 @@ public class CreateQCM implements CreateQuestioner{
 
         String question = splitQuestion[0];
         String[] responses = splitQuestion[1].split("\\,");
-        int numberOfResponse = Integer.parseInt(splitQuestion[2]);
+        String[] numberOfResponse = splitQuestion[2].split("\\,");
 
         QCM qcm = new QCM();
         qcm.setQuestion(question.trim());
@@ -28,7 +36,13 @@ public class CreateQCM implements CreateQuestioner{
         for (int i = 0; i < responses.length; i++) {
             QCMAnswer qcmAnswer = new QCMAnswer();
             qcmAnswer.setAnswer(responses[i].trim());
-            qcmAnswer.setStatus((i + 1) == numberOfResponse ? 1 : 0);
+            int status = 0;
+            for (String num : numberOfResponse) {
+                if ((i + 1) == Integer.parseInt(num.trim())) {
+                    status = 1;
+                    break;
+                }
+            }
             qcmAnswer.setQcm(qcm);
             answerList.add(qcmAnswer);
         }

@@ -5,8 +5,16 @@ import com.fsdm.examsmanagement.model.QShort;
 import com.fsdm.examsmanagement.model.QShortAnswer;
 import jakarta.ejb.Stateless;
 
+/**
+ * Cette classe crée une question à réponse courte.
+ * Elle lit la question et la bonne réponse depuis une ligne de texte.
+ */
 @Stateless
 public class CreateQShort implements CreateQuestioner{
+    /**
+     * Format attendu : question|bonneReponse
+     * Plusieurs réponses possibles peuvent être séparées par ",,".
+     */
     @Override
     public Questioner construireQuestioner(String line) {
         String[] splitQuestion = line.split("\\|");

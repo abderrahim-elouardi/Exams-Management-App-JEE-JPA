@@ -1,6 +1,7 @@
 package com.fsdm.examsmanagement.controller;
 
 import com.fsdm.examsmanagement.model.Administrator;
+import com.fsdm.examsmanagement.security.SessionGuard;
 import com.fsdm.examsmanagement.service.PreparedExamService;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
@@ -19,6 +20,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Contrôleur qui gère la création d'un examen.
+ * Il récupère les données du formulaire et appelle le service métier.
+ */
 @WebServlet("/preparerExamController")
 @MultipartConfig(
         fileSizeThreshold = 1024 * 1024, // 1MB
@@ -29,8 +34,18 @@ public class PreparerExamController extends HttpServlet {
     @EJB
     private PreparedExamService preparedExamService;
 
+    /**
+     * Traite l'envoi du formulaire de préparation d'examen.
+     * Les données manquantes peuvent être récupérées depuis la session.
+     *
+     * @param request requête HTTP contenant les champs du formulaire
+     * @param response réponse HTTP pour redirection ou erreur
+     */
     @Override
     public void doPost(HttpServletRequest request , HttpServletResponse response) throws IOException, ServletException {
+        if (!SessionGuard.requireRole(request, response, "admin")) {
+            return;
+        }
         String title = request.getParameter("exam-title");
         String deadlineValue = request.getParameter("exam-deadline");
 
@@ -81,11 +96,22 @@ public class PreparerExamController extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/afterLoginTeacher");
     }
 
+    /**
+     * Implémentation simple de Part en mémoire.
+     * Elle permet de reconstruire un fichier à partir des octets stockés en session.
+     */
     private static class InMemoryPart implements Part {
         private final String name;
         private final String submittedFileName;
         private final byte[] content;
 
+        /**
+         * Crée un fichier en mémoire.
+         *
+         * @param name nom du champ multipart
+         * @param submittedFileName nom original du fichier
+         * @param content contenu binaire du fichier
+         */
         private InMemoryPart(String name, String submittedFileName, byte[] content) {
             this.name = name;
             this.submittedFileName = submittedFileName;

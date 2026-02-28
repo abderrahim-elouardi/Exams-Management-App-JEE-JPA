@@ -6,4 +6,5 @@ import com.fsdm.examsmanagement.dao.core.GeneriqueDAO;
 
 public interface ExamDAO extends GeneriqueDAO<Exam, Long> {
     public User findByEmailAndPassword(String email , String password);
+    Exam findExamWithDetails(Long idExam);
 }
