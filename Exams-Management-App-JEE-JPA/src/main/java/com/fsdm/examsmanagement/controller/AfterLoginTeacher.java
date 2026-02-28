@@ -10,7 +10,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet("/afterLoginTeacher")
 public class AfterLoginTeacher extends HttpServlet {
@@ -24,13 +23,16 @@ public class AfterLoginTeacher extends HttpServlet {
         HttpSession session = req.getSession(false);
         if(session ==null){
             req.getRequestDispatcher("/WEB-INF/jsp/AuthenticationError.jsp").forward(req, resp);
+            return;
         }
-        else{
-            Administrator admin = (Administrator) session.getAttribute("admin");
-            session.setAttribute("exams",admin.getExamList());
-            System.out.println(admin.getExamList().toArray().length);
-            req.getRequestDispatcher("/WEB-INF/jsp/AfterLoginJspPageTeacher.jsp").forward(req, resp);
+        Administrator admin = (Administrator) session.getAttribute("admin");
+        if (admin == null) {
+            req.getRequestDispatcher("/WEB-INF/jsp/AuthenticationError.jsp").forward(req, resp);
+            return;
         }
+        session.setAttribute("exams",admin.getExamList());
+        System.out.println(admin.getExamList().toArray().length);
+        req.getRequestDispatcher("/WEB-INF/jsp/AfterLoginJspPageTeacher.jsp").forward(req, resp);
     }
 
     @Override

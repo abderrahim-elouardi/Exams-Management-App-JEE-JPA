@@ -3,6 +3,7 @@ package com.fsdm.examsmanagement.service;
 import com.fsdm.examsmanagement.dao.administrator.AdministratorDAO;
 import com.fsdm.examsmanagement.dao.student.StudentDAO;
 import com.fsdm.examsmanagement.model.User;
+import com.fsdm.examsmanagement.security.PasswordSecurity;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 
@@ -51,21 +52,29 @@ public class AuthentificationService {
      * Authentifie un administrateur.
      *
      * @param email email de l'administrateur
-     * @param password mot de passe de l'administrateur
+     * @param plainPassword mot de passe de l'administrateur
      * @return administrateur trouvé, sinon null
      */
-    private User authenticateAdministrator(String email, String password) {
-        return administratorDAO.findByEmailAndPassword(email, password);
+    private User authenticateAdministrator(String email, String plainPassword) {
+        User admin = administratorDAO.findByEmail(email);
+        if (admin == null || admin.getPassword() == null) {
+            return null;
+        }
+        return PasswordSecurity.verify(plainPassword, admin.getPassword()) ? admin : null;
     }
 
     /**
      * Authentifie un étudiant.
      *
      * @param email email de l'étudiant
-     * @param password mot de passe de l'étudiant
+     * @param plainPassword mot de passe de l'étudiant
      * @return étudiant trouvé, sinon null
      */
-    private User authenticateStudent(String email, String password) {
-        return studentDAO.findByEmailAndPassword(email, password);
+    private User authenticateStudent(String email, String plainPassword) {
+        User student = studentDAO.findByEmail(email);
+        if (student == null || student.getPassword() == null) {
+            return null;
+        }
+        return PasswordSecurity.verify(plainPassword, student.getPassword()) ? student : null;
     }
 }

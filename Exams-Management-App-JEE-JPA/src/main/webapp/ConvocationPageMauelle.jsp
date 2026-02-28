@@ -38,7 +38,7 @@
   <div class="message"><%= selectedCount %> étudiant(s) coché(s).</div>
   <% } %>
 
-  <form method="post" action="${pageContext.request.contextPath}/preparerExamController">
+  <form id="manualSelectionForm" method="post" action="${pageContext.request.contextPath}/preparerExamController">
     <table>
       <thead>
       <tr>
@@ -56,7 +56,7 @@
       <% for (Student student : students) { %>
       <tr>
         <td>
-          <input type="checkbox" name="selectedStudentIds" value="<%= student.getId() %>">
+          <input type="checkbox" class="student-checkbox" value="<%= student.getId() %>">
         </td>
         <td><%= student.getId() %></td>
         <td><%= student.getLastName() %> <%= student.getFirstName() %></td>
@@ -69,6 +69,8 @@
     <div class="submit-zone">
       <button type="submit">Créer l'examen avec les étudiants cochés</button>
     </div>
+
+    <div id="selected-students-hidden-inputs"></div>
   </form>
 
   <div class="pagination">
@@ -85,5 +87,73 @@
        href="${pageContext.request.contextPath}/convocationPageMauelleController?page=<%= currentPage + 1 %>">Suivant →</a>
   </div>
 </div>
+
+<script>
+  (function () {
+    const STORAGE_KEY = 'manualConvocationSelectedStudentIds';
+    const form = document.getElementById('manualSelectionForm');
+    const hiddenInputsContainer = document.getElementById('selected-students-hidden-inputs');
+    const checkboxes = Array.from(document.querySelectorAll('.student-checkbox'));
+
+    function getStoredSelection() {
+      try {
+        const rawValue = sessionStorage.getItem(STORAGE_KEY);
+        const parsed = rawValue ? JSON.parse(rawValue) : [];
+        return new Set(Array.isArray(parsed) ? parsed.map(String) : []);
+      } catch (error) {
+        return new Set();
+      }
+    }
+
+    function saveSelection(selectedSet) {
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(selectedSet)));
+    }
+
+    function applySelectionOnCurrentPage(selectedSet) {
+      checkboxes.forEach(function (checkbox) {
+        checkbox.checked = selectedSet.has(String(checkbox.value));
+      });
+    }
+
+    function updateSelectionFromCurrentPage(selectedSet) {
+      checkboxes.forEach(function (checkbox) {
+        const studentId = String(checkbox.value);
+        if (checkbox.checked) {
+          selectedSet.add(studentId);
+        } else {
+          selectedSet.delete(studentId);
+        }
+      });
+    }
+
+    function syncHiddenInputs(selectedSet) {
+      hiddenInputsContainer.innerHTML = '';
+      Array.from(selectedSet).forEach(function (studentId) {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'selectedStudentIds';
+        input.value = studentId;
+        hiddenInputsContainer.appendChild(input);
+      });
+    }
+
+    const selectedSet = getStoredSelection();
+    applySelectionOnCurrentPage(selectedSet);
+
+    checkboxes.forEach(function (checkbox) {
+      checkbox.addEventListener('change', function () {
+        updateSelectionFromCurrentPage(selectedSet);
+        saveSelection(selectedSet);
+      });
+    });
+
+    form.addEventListener('submit', function () {
+      updateSelectionFromCurrentPage(selectedSet);
+      saveSelection(selectedSet);
+      syncHiddenInputs(selectedSet);
+      sessionStorage.removeItem(STORAGE_KEY);
+    });
+  })();
+</script>
 </body>
 </html>

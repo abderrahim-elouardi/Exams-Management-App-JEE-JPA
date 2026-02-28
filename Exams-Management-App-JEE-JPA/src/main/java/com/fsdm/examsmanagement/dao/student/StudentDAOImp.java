@@ -28,6 +28,18 @@ public class StudentDAOImp implements StudentDAO {
     }
 
     @Override
+    public Student findByEmail(String email) {
+        String jpql = "SELECT s FROM Student s WHERE s.email = :email";
+        try {
+            return em.createQuery(jpql, Student.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
     public void save(Student element) {
         if (element.getId() == null) {
             em.persist(element);

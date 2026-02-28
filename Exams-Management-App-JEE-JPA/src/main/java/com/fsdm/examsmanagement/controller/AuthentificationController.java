@@ -59,6 +59,7 @@ public class AuthentificationController extends HttpServlet {
         String email = trim(request.getParameter("email"));
         String password = trim(request.getParameter("password"));
         String role = trim(request.getParameter("role"));
+        boolean authenticated = false;
 
         request.setAttribute("selectedRole", role);
 
@@ -74,6 +75,7 @@ public class AuthentificationController extends HttpServlet {
                 request.getSession(true).setAttribute(role, user);
                 request.setAttribute("loginSuccess", true);
                 request.setAttribute("message", "Authentification réussie pour: " + user.getEmail());
+                authenticated = true;
             } else {
                 request.setAttribute("loginSuccess", false);
                 request.setAttribute("message", "Authentification échouée (email, mot de passe ou rôle invalide).");
@@ -82,12 +84,19 @@ public class AuthentificationController extends HttpServlet {
             request.setAttribute("loginSuccess", false);
             request.setAttribute("message", "Erreur durant le test d'authentification: " + exception.getMessage());
         }
+        if (!authenticated) {
+            request.getRequestDispatcher("/WEB-INF/jsp/authentification.jsp").forward(request, response);
+            return;
+        }
         if(role.equals("admin")){
             request.getRequestDispatcher("afterLoginTeacher").forward(request, response);
+            return;
         }
         if(role.equals("student")){
             request.getRequestDispatcher("afterLoginStudent").forward(request, response);
+            return;
         }
+        request.getRequestDispatcher("/WEB-INF/jsp/authentification.jsp").forward(request, response);
     }
 
     /**

@@ -29,6 +29,18 @@ public class AdministratorDAOImp implements AdministratorDAO {
     }
 
     @Override
+    public Administrator findByEmail(String email) {
+        String jpql = "SELECT a FROM Administrator a WHERE a.email = :email";
+        try {
+            return em.createQuery(jpql, Administrator.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
     public void save(Administrator element) {
         if (element.getId() == null) {
             em.persist(element);
