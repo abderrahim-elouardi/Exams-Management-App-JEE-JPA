@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>Accueil - Gestion Scolaire</title>
-    <link rel="stylesheet" href="css/professeur-etudiant-choix-role-style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/professeur-etudiant-choix-role-style.css">
 </head>
 <body>
 <div class="container">
@@ -20,12 +20,12 @@
     </div>
 
     <div class="role-section">
-        <form action="jsp/authentification" method="get" class="role-form">
+        <form action="${pageContext.request.contextPath}/jsp/authentification" method="get" class="role-form">
             <input type="hidden" name="role" value="student" />
             <button type="submit" class="role-button etudiant-btn">Espace Étudiant</button>
         </form>
 
-        <form action="jsp/authentification" method="get" class="role-form">
+        <form action="${pageContext.request.contextPath}/jsp/authentification" method="get" class="role-form">
             <input type="hidden" name="role" value="admin" />
             <button type="submit" class="role-button professeur-btn">Espace Professeur</button>
         </form>

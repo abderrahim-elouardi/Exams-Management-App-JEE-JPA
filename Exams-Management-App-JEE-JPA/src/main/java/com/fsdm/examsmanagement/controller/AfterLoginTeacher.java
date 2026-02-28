@@ -26,17 +26,17 @@ public class AfterLoginTeacher extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         HttpSession session = req.getSession(false);
         if(session ==null){
-            req.getRequestDispatcher("/WEB-INF/jsp/AuthenticationError.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/jsp/authentification/AuthenticationError.jsp").forward(req, resp);
             return;
         }
         Administrator admin = (Administrator) session.getAttribute("admin");
         if (admin == null) {
-            req.getRequestDispatcher("/WEB-INF/jsp/AuthenticationError.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/jsp/authentification/AuthenticationError.jsp").forward(req, resp);
             return;
         }
         session.setAttribute("exams",admin.getExamList());
         System.out.println(admin.getExamList().toArray().length);
-        req.getRequestDispatcher("/WEB-INF/jsp/AfterLoginJspPageTeacher.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/jsp/admin/AfterLoginJspPageTeacher.jsp").forward(req, resp);
     }
 
     @Override

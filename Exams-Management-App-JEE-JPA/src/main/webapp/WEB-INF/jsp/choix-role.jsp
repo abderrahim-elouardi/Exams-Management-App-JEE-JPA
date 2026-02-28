@@ -9,19 +9,19 @@
 <h1>Bienvenue</h1>
 <p>Choisissez votre espace :</p>
 
-<form action="authentification" method="get">
+<form action="${pageContext.request.contextPath}/authentification" method="get">
     <input type="hidden" name="role" value="student" />
     <button type="submit">Étudiant</button>
 </form>
 
 <br/>
 
-<form action="authentification" method="get">
+<form action="${pageContext.request.contextPath}/authentification" method="get">
     <input type="hidden" name="role" value="admin" />
     <button type="submit">Professeur</button>
 </form>
 
 <br/>
-<a href="../../index.jsp">Retour à l'accueil</a>
+<a href="${pageContext.request.contextPath}/index.jsp">Retour à l'accueil</a>
 </body>
 </html>

@@ -53,7 +53,7 @@ public class ConvocationPageMauelleController extends HttpServlet {
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("totalStudents", totalStudents);
 
-        request.getRequestDispatcher("/ConvocationPageMauelle.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/admin/ConvocationPageMauelle.jsp").forward(request, response);
     }
 
     @Override

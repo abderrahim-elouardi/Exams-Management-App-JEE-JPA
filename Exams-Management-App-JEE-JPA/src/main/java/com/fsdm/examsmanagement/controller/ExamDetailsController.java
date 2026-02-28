@@ -54,6 +54,6 @@ public class ExamDetailsController extends HttpServlet {
         }
 
         req.setAttribute("exam", exam);
-        req.getRequestDispatcher("/WEB-INF/jsp/ExamDetailsTeacher.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/jsp/admin/ExamDetailsTeacher.jsp").forward(req, resp);
     }
 }

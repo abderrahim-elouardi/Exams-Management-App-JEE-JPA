@@ -138,6 +138,6 @@ public class PreparerExamManuelleController extends HttpServlet {
         examDAO.save(exam);
         admin.getExamList().add(exam);
 
-        request.getRequestDispatcher("ConvocationPage.jsp").forward(request, response);
+        request.getRequestDispatcher("/ConvocationPage.jsp").forward(request, response);
     }
 }

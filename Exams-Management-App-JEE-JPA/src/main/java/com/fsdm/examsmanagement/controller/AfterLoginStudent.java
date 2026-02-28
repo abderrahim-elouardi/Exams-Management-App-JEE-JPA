@@ -36,7 +36,7 @@ public class AfterLoginStudent extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         HttpSession session = req.getSession(true);
         if(session ==null){
-            req.getRequestDispatcher("/WEB-INF/jsp/AuthenticationError.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/jsp/authentification/AuthenticationError.jsp").forward(req, resp);
         }
         else{
             Student student = (Student) session.getAttribute("student");
@@ -52,7 +52,7 @@ public class AfterLoginStudent extends HttpServlet {
             }
             session.setAttribute("passed_exam_notes", passedExamNotes);
 
-            req.getRequestDispatcher("/WEB-INF/jsp/AfterLoginJspPageStudent.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/jsp/student/AfterLoginJspPageStudent.jsp").forward(req, resp);
         }
     }
 

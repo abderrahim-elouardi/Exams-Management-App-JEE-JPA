@@ -39,7 +39,7 @@ public class AuthentificationController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String role = trim(request.getParameter("role"));
         request.setAttribute("selectedRole", role);
-        request.getRequestDispatcher("/WEB-INF/jsp/authentification.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/authentification/authentification.jsp").forward(request, response);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class AuthentificationController extends HttpServlet {
         if (email.isEmpty() || password.isEmpty()) {
             request.setAttribute("loginSuccess", false);
             request.setAttribute("message", "Email et mot de passe sont obligatoires.");
-            request.getRequestDispatcher("/WEB-INF/jsp/authentification.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/authentification/authentification.jsp").forward(request, response);
             return;
         }
         try {
@@ -85,7 +85,7 @@ public class AuthentificationController extends HttpServlet {
             request.setAttribute("message", "Erreur durant le test d'authentification: " + exception.getMessage());
         }
         if (!authenticated) {
-            request.getRequestDispatcher("/WEB-INF/jsp/authentification.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/authentification/authentification.jsp").forward(request, response);
             return;
         }
         if(role.equals("admin")){
@@ -96,7 +96,7 @@ public class AuthentificationController extends HttpServlet {
             request.getRequestDispatcher("afterLoginStudent").forward(request, response);
             return;
         }
-        request.getRequestDispatcher("/WEB-INF/jsp/authentification.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/authentification/authentification.jsp").forward(request, response);
     }
 
     /**

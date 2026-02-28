@@ -84,7 +84,7 @@ public class StartExamStudentController extends HttpServlet {
         req.setAttribute("exam", exam);
         req.setAttribute("questions", shuffledQuestions);
         req.setAttribute("durationMinutes", durationMinutes);
-        req.getRequestDispatcher("/WEB-INF/jsp/StudentExamSession.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/jsp/student/StudentExamSession.jsp").forward(req, resp);
     }
 
     @Override
