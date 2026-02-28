@@ -6,4 +6,5 @@ import com.fsdm.examsmanagement.dao.core.GeneriqueDAO;
 
 public interface AdministratorDAO extends GeneriqueDAO<Administrator, Long> {
     public Administrator findByEmailAndPassword(String email , String password);
+    public Administrator findByEmail(String email);
 }
