@@ -38,7 +38,7 @@
         </div>
 
         <div class="actions">
-            <button type="button" onclick="window.location.href='${pageContext.request.contextPath}/ConvocationPage.jsp?mode=upload'">
+            <button type="button" onclick="window.location.href='convocationPage.jsp'">
                 Upload IDs des étudiants
             </button>
             <button type="button" onclick="window.location.href='${pageContext.request.contextPath}/convocationPageMauelleController'">

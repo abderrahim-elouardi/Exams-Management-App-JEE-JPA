@@ -215,7 +215,7 @@
         Importez un fichier texte contenant la liste des étudiants convoqués pour passer l'examen.
     </p>
 
-    <form method="POST" action="${pageContext.request.contextPath}/callStudent">
+    <form method="POST" action="${pageContext.request.contextPath}/callStudent" enctype="multipart/form-data">
         <div class="form-group">
             <label for="student-file">Sélectionnez un fichier texte</label>
             <div class="file-input-wrapper">

@@ -23,14 +23,14 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #f0f9ff 0%, #f3e8ff 100%);
             color: #2c3e50;
             min-height: 100vh;
         }
 
         /* Navbar */
         nav {
-            background: linear-gradient(90deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(90deg, #0000ff 0%, #ffffff 100%);
             color: white;
             padding: 1rem 2rem;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -70,7 +70,7 @@
         }
 
         .logout-btn {
-            background-color: #ff5252;
+            background: linear-gradient(90deg, #0066cc 0%, #3399ff 100%);
             color: white;
             border: none;
             padding: 0.7rem 1.5rem;
@@ -228,7 +228,7 @@
         <div class="navbar-brand">MyApp</div>
         <div class="navbar-right">
             <div class="welcome-message">Bienvenue,Professeur <%=((Administrator)session.getAttribute("admin")).getFirstName()+((Administrator)session.getAttribute("admin")).getFirstName()%></div>
-            <a href="${pageContext.request.contextPath}/choixPreparationExam.jsp" class="logout-btn">Preparer un Examen</a>
+            <button class="logout-btn"><a href="${pageContext.request.contextPath}/choixPreparationExam.jsp">Preparer un Examen</a></button>
             <form action="deconnection" method="POST">
                 <button class="logout-btn">Déconnexion</button>
             </form>

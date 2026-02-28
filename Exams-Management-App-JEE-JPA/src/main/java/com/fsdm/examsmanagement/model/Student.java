@@ -26,4 +26,15 @@ public class Student extends User{
     )
     private List<Exam> examList;
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "cne='" + cne + '\'' +
+                ", id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
