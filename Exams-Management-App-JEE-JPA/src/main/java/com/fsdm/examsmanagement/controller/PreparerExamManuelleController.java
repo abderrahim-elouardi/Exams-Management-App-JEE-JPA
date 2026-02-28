@@ -28,26 +28,6 @@ public class PreparerExamManuelleController extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request , HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("application/json");
-//        String titre = request.getParameter("exam-title");
-//        String deadline = request.getParameter("exam-deadline");
-//        String[] splitedDeadline = deadline.split("-");
-//        String yearDeadline = splitedDeadline[0];
-//        String mounthDeadline = splitedDeadline[1];
-//        String dayDeadline = splitedDeadline[2];
-//        Exam exam = new Exam();
-//        exam.setTitre(titre);
-//        exam.setDeadline(LocalDate.of(Integer.parseInt(yearDeadline),Integer.parseInt(mounthDeadline),Integer.parseInt(dayDeadline)));
-//        HttpSession session = request.getSession(false);
-//        Administrator admin =administratorDAO.findByEmailAndPassword("username@gmail.com","password");
-//
-////        if(session == null){
-////
-////        }else{
-////            Administrator admin = (Administrator) session.getAttribute("admin");
-//            exam.setAdmin(admin);
-//            session.setAttribute("PreparedExam",exam);
-//            request.getRequestDispatcher("/ajouterQuestion.jsp").forward(request , response);
-////        }
 
         PrintWriter out = response.getWriter();
         String titre = request.getParameter("exam_title");
@@ -78,19 +58,24 @@ public class PreparerExamManuelleController extends HttpServlet {
             for(int i=0;i<numberOfQcmQuestion;i++){
                 QCM qcm = new QCM();
                 qcm.setQuestion(request.getParameter("QCMquestion_"+i));
+
+
                 QCMAnswer optionAnswer1 = new QCMAnswer();
                 optionAnswer1.setAnswer(request.getParameter("QCMq"+i+"_opt1"));
 
                 QCMAnswer optionAnswer2 = new QCMAnswer();
-                optionAnswer1.setAnswer(request.getParameter("QCMq"+i+"_opt2"));
+                optionAnswer2.setAnswer(request.getParameter("QCMq"+i+"_opt2"));
 
                 QCMAnswer optionAnswer3 = new QCMAnswer();
-                optionAnswer1.setAnswer(request.getParameter("QCMq"+i+"_opt3"));
+                optionAnswer3.setAnswer(request.getParameter("QCMq"+i+"_opt3"));
+
 
                 QCMAnswer optionAnswer4 = new QCMAnswer();
-                optionAnswer1.setAnswer(request.getParameter("QCMq"+i+"_opt4"));
+                optionAnswer4.setAnswer(request.getParameter("QCMq"+i+"_opt4"));
+
 
                 qcm.setAnswerList(List.of(optionAnswer1,optionAnswer2,optionAnswer3,optionAnswer4));
+
                 if(exam.getQuestioner()==null){
                     List<Questioner> list = new ArrayList<>();
                     list.add(qcm);
@@ -106,9 +91,10 @@ public class PreparerExamManuelleController extends HttpServlet {
                 QShort qshort = new QShort();
                 qshort.setQuestion(request.getParameter("ShortAnswerquestion_"+i));
                 QShortAnswer answer = new QShortAnswer();
-                answer.setAnswer("ShortAnswerq"+i+"_opt1");
+                answer.setAnswer(request.getParameter("ShortAnswerq"+i+"_opt1"));
                 answer.setQshort(qshort);
                 answer.setStatus(1);
+                qshort.setAnswer(answer);
                 if(exam.getQuestioner()==null){
                     List<Questioner> list = new ArrayList<>();
                     list.add(qshort);
@@ -122,7 +108,16 @@ public class PreparerExamManuelleController extends HttpServlet {
         if(FILLBLANKquestion_typesCheckBox!=null){
             for(int i=0;i<numberOfFillBlankQuestion;i++){
                 QFillInBlank qFillInBlank = new QFillInBlank();
-                qFillInBlank.setQuestion(request.getParameter("FillBlankquestion_${i}"));
+                qFillInBlank.setQuestion(request.getParameter("FillBlankquestion_"+i));
+
+                String answers = request.getParameter("FillBlankq"+i+"_opt1");
+                List<QFillInBlankAnswer> listAnswers = new ArrayList<>();
+                for(String answer:answers.split(":")){
+                    QFillInBlankAnswer qFillInBlankAnswer = new QFillInBlankAnswer();
+                    qFillInBlankAnswer.setAnswer(answer);
+                    listAnswers.add(qFillInBlankAnswer);
+                }
+                qFillInBlank.setQFillInBlankAnswer(listAnswers);
 
                 if(exam.getQuestioner()==null){
                     List<Questioner> list = new ArrayList<>();
@@ -134,10 +129,10 @@ public class PreparerExamManuelleController extends HttpServlet {
                 }
             }
         }
-        Administrator admin =administratorDAO.findByEmailAndPassword("username@gmail.com","password");
+        Administrator admin = (Administrator) request.getSession().getAttribute("admin");
         exam.setAdmin(admin);
         examDAO.save(exam);
-        out.println(administratorDAO.findByEmailAndPassword("username@gmail.com","password"));
+        admin.getExamList().add(exam);
 
         request.getRequestDispatcher("/convocationPage.jsp").forward(request, response);
     }

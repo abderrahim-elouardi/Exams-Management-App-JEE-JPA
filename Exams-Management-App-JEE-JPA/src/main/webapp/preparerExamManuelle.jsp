@@ -484,15 +484,15 @@
                 questionArea.innerHTML = "";
                 for(let i = 0; i < value; i++){
                     questionArea.innerHTML += `
-<h3>Question ${i+1}</h3>
+<h3>Question \${i+1}</h3>
 
-<input type="text" name="QCMquestion_${i}" placeholder="Enoncé de la question"/>
+<input type="text" name="QCMquestion_\${i}" placeholder="Enoncé de la question"/>
 
 <div class="options">
-    <input type="text" name="QCMq${i}_opt1" placeholder="Option 1"/>
-    <input type="text" name="QCMq${i}_opt2" placeholder="Option 2"/>
-    <input type="text" name="QCMq${i}_opt3" placeholder="Option 3"/>
-    <input type="text" name="QCMq${i}_opt4" placeholder="Option 4"/>
+    <input type="text" name="QCMq\${i}_opt1" placeholder="Option 1"/>
+    <input type="text" name="QCMq\${i}_opt2" placeholder="Option 2"/>
+    <input type="text" name="QCMq\${i}_opt3" placeholder="Option 3"/>
+    <input type="text" name="QCMq\${i}_opt4" placeholder="Option 4"/>
 </div>
 <div class="form-section">
         <h2 class="section-title">Configuration</h2>
@@ -542,12 +542,12 @@
                 questionArea.innerHTML = "";
                 for(let i = 0; i < value; i++){
                     questionArea.innerHTML += `
-<h3>Question ${i+1}</h3>
+<h3>Question \${i+1}</h3>
 
-<input type="text" name="ShortAnswerquestion_${i}" placeholder="Enoncé de la question"/>
+<input type="text" name="ShortAnswerquestion_\${i}" placeholder="Enoncé de la question"/>
 
 <div class="options">
-    <input type="text" name="ShortAnswerq${i}_opt1" placeholder="Answer"/>
+    <input type="text" name="ShortAnswerq\${i}_opt1" placeholder="Answer"/>
 </div>
 <div class="form-section">
         <h2 class="section-title">Configuration</h2>
@@ -597,12 +597,12 @@
                 questionArea.innerHTML = "";
                 for(let i = 0; i < value; i++){
                     questionArea.innerHTML += `
-<h3>Question ${i+1} (Chaque blanc doit être complété par quatre points (....).)</h3>
+<h3>Question \${i+1} (Chaque blanc doit être complété par quatre points (....) | ⚠️ Les réponses doivent être séparées par : </h3>
 
-<input type="text" name="FillBlankquestion_${i}" placeholder="Enoncé de la question"/>
+<input type="text" name="FillBlankquestion_\${i}" placeholder="Enoncé de la question"/>
 
 <div class="options">
-    <input type="text" name="FillBlankq${i}_opt1" placeholder="Answer"/>
+    <input type="text" name="FillBlankq\${i}_opt1" placeholder="Answers"/>
 </div>
 <div class="form-section">
         <h2 class="section-title">Configuration</h2>

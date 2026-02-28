@@ -48,4 +48,15 @@ public abstract class Questioner {
     @ManyToOne
     @JoinColumn(name = "examenid")
     private Exam exam;
+
+    @Override
+    public String toString() {
+        return "Questioner{" +
+                "id=" + id +
+                ", point=" + point +
+                ", question='" + question + '\'' +
+                ", responseTime=" + responseTime +
+                ", exam=" + exam +
+                '}';
+    }
 }

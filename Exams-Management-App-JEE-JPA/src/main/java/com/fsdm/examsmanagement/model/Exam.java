@@ -35,7 +35,7 @@ public class Exam {
 //    @OneToMany(mappedBy = "examen")
 //    private List<Questioner> questions;
 
-    @OneToMany(mappedBy = "exam",cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "exam",cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Questioner> questioner;
 
     @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)

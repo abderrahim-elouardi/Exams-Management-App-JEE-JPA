@@ -38,16 +38,13 @@ public class CallStudentController extends HttpServlet {
     public void doPost(HttpServletRequest request , HttpServletResponse response) throws IOException, ServletException {
         PrintWriter out = response.getWriter();
         Part filePart = request.getPart("student-file");
-        System.out.println(filePart.getName());
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(filePart.getInputStream())
         );
         reader.lines().forEach((l)->{
             String studentId = l.trim();
-            System.out.println("l'etudiant convoque qui a l'id"+l);
             Student student = studentDAO.findById((long) Integer.parseInt(studentId));
             if(student!=null){
-                System.out.println("etudiant "+l);
                 String studentEmail = student.getEmail();
                 final String from = "tonemail@gmail.com";
                 final String password = "MOT_DE_PASSE_APPLICATION";
@@ -79,8 +76,14 @@ public class CallStudentController extends HttpServlet {
 
                     System.out.println("Email envoyé avec succès ✅");
 
+                    request.getRequestDispatcher("/afterLoginTeacher").forward(request, response);
+
                 } catch (MessagingException e) {
                     e.printStackTrace();
+                } catch (ServletException e) {
+                    throw new RuntimeException(e);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });

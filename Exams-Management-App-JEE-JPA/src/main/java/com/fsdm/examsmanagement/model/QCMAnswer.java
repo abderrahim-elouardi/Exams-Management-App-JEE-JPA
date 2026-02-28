@@ -41,4 +41,14 @@ public class QCMAnswer {
     @JoinColumn(name = "qcmid")
     private QCM qcm;
 
+
+    @Override
+    public String toString() {
+        return "QCMAnswer{" +
+                "id=" + id +
+                ", answer='" + answer + '\'' +
+                ", status=" + status +
+                ", qcm=" + qcm +
+                '}';
+    }
 }

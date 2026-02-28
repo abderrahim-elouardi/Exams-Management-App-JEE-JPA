@@ -41,4 +41,12 @@ public class QShortAnswer {
     @JoinColumn(name = "qshortid")
     private QShort qshort;
 
+    @Override
+    public String toString() {
+        return "QShortAnswer{" +
+                "id=" + id +
+                ", answer='" + answer + '\'' +
+                ", status=" + status +
+                '}';
+    }
 }

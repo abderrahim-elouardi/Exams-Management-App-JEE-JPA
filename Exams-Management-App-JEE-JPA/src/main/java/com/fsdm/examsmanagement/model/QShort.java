@@ -19,4 +19,8 @@ public class QShort extends Questioner{
 
     @OneToOne(mappedBy = "qshort",cascade = CascadeType.ALL)
     private QShortAnswer answer;
+
+
+
+
 }
