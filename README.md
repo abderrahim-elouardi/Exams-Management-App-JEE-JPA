@@ -1,57 +1,57 @@
 # 🎓 Exams Management App - Générateur d'Examen Quizz
 
-Ce projet consiste en le développement d'une application web robuste pour la **génération et la passation d'examens en ligne**. [cite_start]Il a été réalisé dans le cadre du module **Programmation avancée et technologies JEE**[cite: 5, 6].
+Ce projet consiste en le développement d'une application web robuste pour la **génération et la passation d'examens en ligne**. Il a été réalisé dans le cadre du module **Programmation avancée et technologies JEE** (Master Web Intelligence et Science de données).
 
 ## 👥 Équipe du Projet
-* [cite_start]**AQUAD Abdelkarim** [cite: 10]
-* [cite_start]**EL OUARDI Abderrahim** [cite: 10]
-* **Encadrant :** Pr. [cite_start]Yahyaouy Ali [cite: 11]
-* [cite_start]**Établissement :** Faculté des Sciences Dhar El Mahraz - Fès [cite: 1]
+* **AQUAD Abdelkarim** & **EL OUARDI Abderrahim**
+* **Encadrant :** Pr. Yahyaouy Ali
+* **Établissement :** Faculté des Sciences Dhar El Mahraz - Fès
+* **Année :** 2025-2026
 
 ---
 
 ## 🚀 Fonctionnalités Clés
-[cite_start]L'application propose deux interfaces distinctes pour l'administrateur et l'étudiant[cite: 35, 50].
+L'application propose deux interfaces distinctes selon le rôle de l'utilisateur.
 
 ### 🛠️ Pour l'Administrateur
-* [cite_start]**Configuration d'examens :** Définition du titre, de la durée, du nombre de questions et de la liste des candidats[cite: 55, 73, 74, 75].
-* [cite_start]**Gestion des questions :** Support de plusieurs types : QCM (unique/multiple), textes à trous et courtes réponses[cite: 68, 69, 70, 71].
+* **Configuration d'examens :** Définition du titre, de la durée, du nombre de questions et gestion des candidats.
+* **Gestion des questions :** Support de plusieurs types : QCM (unique/multiple), textes à trous et courtes réponses.
 * **Modes d'alimentation :**
-    * [cite_start]Saisie manuelle via une interface web dynamique[cite: 52].
-    * [cite_start]Importation par fichier texte structuré[cite: 53, 79].
-* [cite_start]**Gestion des étudiants :** Importation massive de la liste des étudiants via un fichier **Excel** (Nom, Prénom, Email)[cite: 54, 85, 86].
-* [cite_start]**Diffusion :** Lancement de l'examen et envoi des accès par email[cite: 56, 92].
+    * Saisie manuelle via une interface web dynamique.
+    * Importation par fichier texte structuré.
+* **Gestion des étudiants :** Importation massive via un fichier **Excel**.
+* **Diffusion :** Lancement de l'examen et envoi des accès par email.
 
 ### ✍️ Pour l'Étudiant
-* [cite_start]**Passation en ligne :** Accès sécurisé avec un affichage séquentiel et aléatoire des questions[cite: 57, 95].
-* [cite_start]**Chronométrage :** Affichage d'un chronomètre durant toute la durée autorisée[cite: 57, 96].
-* [cite_start]**Résultats :** Calcul automatique de la note et enregistrement immédiat en base de données[cite: 58, 98, 100].
+* **Passation en ligne :** Accès sécurisé avec affichage séquentiel et aléatoire des questions.
+* **Chronométrage :** Affichage d'un compte à rebours en temps réel.
+* **Résultats :** Calcul automatique de la note et enregistrement immédiat en base de données.
 
 ---
 
 ## 🛠️ Stack Technique
-[cite_start]L'application repose sur une architecture **MVC N-Tiers**[cite: 164, 166].
+L'application repose sur une architecture **N-Tiers (MVC)** déployée sur le serveur **WildFly**.
 
-* [cite_start]**Back-end :** Java 17+, Jakarta Servlet, JSP (JSTL), EJB[cite: 179, 183, 186].
-* [cite_start]**Persistance :** JPA / Hibernate avec base de données Oracle[cite: 181, 182, 186].
-* [cite_start]**Front-end :** HTML5, CSS3, JavaScript pour la manipulation dynamique du DOM[cite: 184, 185].
-* [cite_start]**Serveur d'applications :** WildFly 39 (JBoss)[cite: 186].
-* [cite_start]**Outils :** Maven, IntelliJ IDEA, Git[cite: 186].
+* **Back-end :** Java 17+, Jakarta Servlet, JSP (JSTL), EJB.
+* **Persistance :** JPA / Hibernate avec base de données **Oracle** (ou H2).
+* **Front-end :** HTML5, CSS3, JavaScript.
+* **Serveur d'applications :** WildFly 39 (JBoss).
+* **Outils :** Maven, IntelliJ IDEA, Git.
 
 ---
 
 ## 📂 Structure du Projet
-* [cite_start]`src/main/java` : Contient les Entités JPA, les Servlets (Contrôleurs) et les modules DAO[cite: 191, 192, 194].
-* [cite_start]`src/main/webapp` : Contient les pages JSP et les ressources statiques (CSS, JS)[cite: 168, 180].
-* [cite_start]`export_database.sql` : Script complet de création de la base de données[cite: 147, 204].
-* [cite_start]`Rapport_Projet_Generateur_Examen.pdf` : Documentation détaillée du projet[cite: 24].
+* `src/main/java` : Entités JPA, Servlets et services DAO.
+* `src/main/webapp` : Pages JSP et ressources statiques.
+* `export_database.sql` : Script SQL pour la reconstruction de la base de données.
+* `Rapport_Projet_Generateur_Examen.pdf` : Documentation technique complète.
 
 ---
 
 ## ⚙️ Installation Rapide
-1. [cite_start]**Base de données :** Exécutez le script fourni dans `export_database.sql` sur votre instance Oracle/H2[cite: 204].
-2. [cite_start]**Configuration :** Ajustez le fichier `persistence.xml` pour établir la connexion avec votre base de données[cite: 146, 176].
-3. [cite_start]**Déploiement :** Compilez le projet avec Maven et déployez le fichier généré sur votre serveur WildFly[cite: 171, 186].
+1. **Base de données :** Importez le script `export_database.sql` pour créer les tables.
+2. **Configuration :** Ajustez le fichier `persistence.xml` avec vos identifiants.
+3. **Déploiement :** Compilez avec Maven (`mvn clean package`) et déployez le `.war` sur WildFly.
 
 ---
-[cite_start]© 2026 - Master Web Intelligence et Science de données [cite: 3, 4, 12]
+© 2026 - Master Web Intelligence et Science de données.
