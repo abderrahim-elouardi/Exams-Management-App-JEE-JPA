@@ -156,7 +156,7 @@ public class PreparerExamManuelleController extends HttpServlet {
 
 
 
-        exam.setResponseTime(Long.parseLong(request.getParameter("duree_exam")));
+        exam.setResponseTime(Integer.parseInt(request.getParameter("duree_exam")));
 
         Administrator admin = administratorDAO.findById(((Administrator) request.getSession().getAttribute("admin")).getId());
         exam.setAdmin(admin);
