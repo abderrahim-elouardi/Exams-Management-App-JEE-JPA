@@ -676,7 +676,17 @@
             </span>
                     <select  id="selectionQcm" name="numberOfQcmQuestion" class="hidden" >
                         <option value="1">1</option>
+                        <option value="5">2</option>
+                        <option value="5">3</option>
+                        <option value="5">4</option>
                         <option value="5">5</option>
+                        <option value="5">6</option>
+                        <option value="5">7</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
                     </select>
                 </label>
                 <div id="QcmQuestions">
@@ -690,7 +700,17 @@
             </span>
                     <select  id="selectionShortAnswer" name="numberOfShortAnswerQuestion" class="hidden" >
                         <option value="1">1</option>
+                        <option value="5">2</option>
+                        <option value="5">3</option>
+                        <option value="5">4</option>
                         <option value="5">5</option>
+                        <option value="5">6</option>
+                        <option value="5">7</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
                     </select>
                 </label>
                 <div id="ShortAnswerQuestions">
@@ -705,11 +725,41 @@
             </span>
                     <select id="selectionFillBlank" name="numberOfFillBlankQuestion" class="hidden" >
                         <option value="1">1</option>
+                        <option value="5">2</option>
+                        <option value="5">3</option>
+                        <option value="5">4</option>
                         <option value="5">5</option>
+                        <option value="5">6</option>
+                        <option value="5">7</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
                     </select>
                 </label>
                 <div id="FillBlankQuestions">
 
+                </div>
+                <div class="select-group">
+                    <div class="form-group">
+                        <label for="question-count">LA durée d'examen  *</label>
+                        <select id="question-count" name="duree_exam" required>
+                            <option value="">Sélectionnez un nombre</option>
+                            <option value="1">1</option>
+                            <option value="5">2</option>
+                            <option value="5">3</option>
+                            <option value="5">4</option>
+                            <option value="5">5</option>
+                            <option value="5">6</option>
+                            <option value="5">7</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>

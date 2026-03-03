@@ -30,7 +30,7 @@ public class Exam {
     @JoinColumn(name = "idAdmin")
     private Administrator admin;
 
-    @ManyToMany(mappedBy = "examList")
+    @ManyToMany(mappedBy = "examList",fetch = FetchType.EAGER)
     private List<Student> studentList;
 
 //    @OneToMany(mappedBy = "examen")
