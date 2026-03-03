@@ -42,7 +42,7 @@
         </div>
     </div>
 
-    <button class="btn"><a href="professeur-etudiant-choix-role.jsp">Commencer Maintenant</a></button>
+    <button class="btn"><a href="${pageContext.request.contextPath}/professeur-etudiant-choix-role.jsp">Commencer Maintenant</a></button>
 </div>
 </body>
 </html>

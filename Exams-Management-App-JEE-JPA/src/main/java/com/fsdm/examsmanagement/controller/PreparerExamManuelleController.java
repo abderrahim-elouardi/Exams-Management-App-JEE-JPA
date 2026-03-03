@@ -2,6 +2,7 @@ package com.fsdm.examsmanagement.controller;
 
 import com.fsdm.examsmanagement.dao.administrator.AdministratorDAO;
 import com.fsdm.examsmanagement.dao.exam.ExamDAO;
+import com.fsdm.examsmanagement.dao.question.*;
 import com.fsdm.examsmanagement.model.*;
 import com.fsdm.examsmanagement.security.SessionGuard;
 import jakarta.ejb.EJB;
@@ -25,6 +26,18 @@ public class PreparerExamManuelleController extends HttpServlet {
     AdministratorDAO administratorDAO;
     @EJB
     ExamDAO examDAO;
+
+    @EJB
+    private QuestionerDAOImp questionerDAOImp;
+
+    @EJB
+    QFillBlankAnswerDAOImp qFillBlankAnswerDAOImp;
+
+    @EJB
+    QCMAnswerDAOImp qcmAnswerDAOImp;
+
+    @EJB
+    QShortAnswerDAOImp qShortAnswerDAOImp;
 
     @Override
     public void doPost(HttpServletRequest request , HttpServletResponse response) throws IOException, ServletException {
@@ -63,7 +76,6 @@ public class PreparerExamManuelleController extends HttpServlet {
                 QCM qcm = new QCM();
                 qcm.setQuestion(request.getParameter("QCMquestion_"+i));
 
-
                 QCMAnswer optionAnswer1 = new QCMAnswer();
                 optionAnswer1.setAnswer(request.getParameter("QCMq"+i+"_opt1"));
 
@@ -78,6 +90,7 @@ public class PreparerExamManuelleController extends HttpServlet {
                 optionAnswer4.setAnswer(request.getParameter("QCMq"+i+"_opt4"));
 
 
+
                 qcm.setAnswerList(List.of(optionAnswer1,optionAnswer2,optionAnswer3,optionAnswer4));
 
                 if(exam.getQuestioner()==null){
@@ -85,9 +98,10 @@ public class PreparerExamManuelleController extends HttpServlet {
                     list.add(qcm);
                     exam.setQuestioner(list);
                 }
-                else{
+                else {
                     exam.getQuestioner().add(qcm);
                 }
+                qcm.setExam(exam);
             }
         }
         if(SHORTquestion_typesCheckBox!=null){
@@ -99,6 +113,8 @@ public class PreparerExamManuelleController extends HttpServlet {
                 answer.setQshort(qshort);
                 answer.setStatus(1);
                 qshort.setAnswer(answer);
+
+
                 if(exam.getQuestioner()==null){
                     List<Questioner> list = new ArrayList<>();
                     list.add(qshort);
@@ -107,6 +123,7 @@ public class PreparerExamManuelleController extends HttpServlet {
                 else{
                     exam.getQuestioner().add(qshort);
                 }
+                qshort.setExam(exam);
             }
         }
         if(FILLBLANKquestion_typesCheckBox!=null){
@@ -119,9 +136,11 @@ public class PreparerExamManuelleController extends HttpServlet {
                 for(String answer:answers.split(":")){
                     QFillInBlankAnswer qFillInBlankAnswer = new QFillInBlankAnswer();
                     qFillInBlankAnswer.setAnswer(answer);
+
                     listAnswers.add(qFillInBlankAnswer);
                 }
                 qFillInBlank.setQFillInBlankAnswer(listAnswers);
+
 
                 if(exam.getQuestioner()==null){
                     List<Questioner> list = new ArrayList<>();
@@ -131,13 +150,22 @@ public class PreparerExamManuelleController extends HttpServlet {
                 else{
                     exam.getQuestioner().add(qFillInBlank);
                 }
+                qFillInBlank.setExam(exam);
             }
         }
-        Administrator admin = (Administrator) request.getSession().getAttribute("admin");
+
+
+
+        exam.setResponseTime(Long.parseLong(request.getParameter("duree_exam")));
+
+        Administrator admin = administratorDAO.findById(((Administrator) request.getSession().getAttribute("admin")).getId());
         exam.setAdmin(admin);
         examDAO.save(exam);
+
         admin.getExamList().add(exam);
+        request.getSession().setAttribute("exam",exam);
 
         request.getRequestDispatcher("/ConvocationPage.jsp").forward(request, response);
+
     }
 }

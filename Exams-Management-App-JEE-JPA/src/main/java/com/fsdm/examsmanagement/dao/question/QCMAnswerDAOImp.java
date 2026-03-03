@@ -5,8 +5,8 @@ import com.fsdm.examsmanagement.model.QCMAnswer;
 import jakarta.ejb.Stateless;
 
 @Stateless
-public class QAnswerDAOImp extends AbstractGeneriqueDAO<QCMAnswer, Long> {
-    public QAnswerDAOImp(){
+public class QCMAnswerDAOImp extends AbstractGeneriqueDAO<QCMAnswer, Long> {
+    public QCMAnswerDAOImp(){
         super(QCMAnswer.class, "id");
     }
 }

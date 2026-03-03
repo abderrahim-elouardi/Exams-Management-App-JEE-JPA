@@ -2,6 +2,7 @@ package com.fsdm.examsmanagement.controller;
 
 import com.fsdm.examsmanagement.dao.administrator.AdministratorDAO;
 import com.fsdm.examsmanagement.model.Administrator;
+import com.fsdm.examsmanagement.model.Exam;
 import com.fsdm.examsmanagement.security.SessionGuard;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
@@ -35,6 +36,10 @@ public class AfterLoginTeacher extends HttpServlet {
             return;
         }
         session.setAttribute("exams",admin.getExamList());
+        System.out.println("exam list");
+        for(Exam e:admin.getExamList()){
+            System.out.println(e);
+        }
         System.out.println(admin.getExamList().toArray().length);
         req.getRequestDispatcher("/WEB-INF/jsp/admin/AfterLoginJspPageTeacher.jsp").forward(req, resp);
     }
