@@ -15,7 +15,6 @@ import java.util.List;
 @Setter
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
-@Table(name="SuperAdmin")
+@Table(name="SuperAdminTable")
 public class SuperAdmin extends User{
 }

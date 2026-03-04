@@ -1,9 +1,6 @@
 package com.fsdm.examsmanagement.model;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +19,6 @@ public class QCM extends Questioner {
     /**
      * Liste des réponses possibles pour cette question à choix multiple.
      */
-    @OneToMany(mappedBy = "qcm",cascade= CascadeType.ALL)
+    @OneToMany(mappedBy = "qcm",cascade= CascadeType.ALL,fetch = FetchType.EAGER)
     private List<QCMAnswer> answerList;
 }

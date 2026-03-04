@@ -164,7 +164,6 @@ public class PreparerExamManuelleController extends HttpServlet {
 
         admin.getExamList().add(exam);
         request.getSession().setAttribute("exam",exam);
-
         request.getRequestDispatcher("/ConvocationPage.jsp").forward(request, response);
 
     }

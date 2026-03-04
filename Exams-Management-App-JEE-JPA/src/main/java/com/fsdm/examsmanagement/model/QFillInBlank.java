@@ -1,9 +1,6 @@
 package com.fsdm.examsmanagement.model;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +19,6 @@ import java.util.List;
  */
 public class QFillInBlank extends Questioner{
 
-    @OneToMany(mappedBy = "qFillInBlanck",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "qFillInBlanck",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<QFillInBlankAnswer> qFillInBlankAnswer;
 }

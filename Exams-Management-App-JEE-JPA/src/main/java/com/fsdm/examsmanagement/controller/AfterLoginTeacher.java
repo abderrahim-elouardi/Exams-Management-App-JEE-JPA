@@ -21,9 +21,10 @@ public class AfterLoginTeacher extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (!SessionGuard.requireRole(req, resp, "admin")) {
-            return;
-        }
+//        if (!SessionGuard.requireRole(req, resp, "admin")) {
+//            return;
+//        }
+
         resp.setContentType("text/html;charset=UTF-8");
         HttpSession session = req.getSession(false);
         if(session ==null){
@@ -35,6 +36,8 @@ public class AfterLoginTeacher extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/jsp/authentification/AuthenticationError.jsp").forward(req, resp);
             return;
         }
+
+        admin = administratorDAO.findById(admin.getId());
         session.setAttribute("exams",admin.getExamList());
         System.out.println("exam list");
         for(Exam e:admin.getExamList()){

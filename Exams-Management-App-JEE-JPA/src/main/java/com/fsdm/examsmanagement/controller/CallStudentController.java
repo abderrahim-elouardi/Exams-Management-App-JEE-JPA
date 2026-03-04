@@ -1,7 +1,9 @@
 package com.fsdm.examsmanagement.controller;
 
+import com.fsdm.examsmanagement.dao.administrator.AdministratorDAO;
 import com.fsdm.examsmanagement.dao.exam.ExamDAO;
 import com.fsdm.examsmanagement.dao.student.StudentDAO;
+import com.fsdm.examsmanagement.model.Administrator;
 import com.fsdm.examsmanagement.model.Exam;
 import com.fsdm.examsmanagement.model.Student;
 import com.fsdm.examsmanagement.security.SessionGuard;
@@ -12,9 +14,7 @@ import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.*;
 import jakarta.servlet.http.Part;
 
 import java.io.BufferedReader;
@@ -35,6 +35,9 @@ public class CallStudentController extends HttpServlet {
 
     @EJB
     ExamDAO examDAO;
+
+    @EJB
+    AdministratorDAO administratorDAO;
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, IOException, ServletException {
@@ -115,7 +118,6 @@ public class CallStudentController extends HttpServlet {
             e.printStackTrace();
         }
 
-        // 4. Redirection FINALE (Hors de la boucle)
-        response.sendRedirect(request.getContextPath() + "/afterLoginTeacher");
+        request.getRequestDispatcher("/afterLoginTeacher").forward(request,response);
     }
 }

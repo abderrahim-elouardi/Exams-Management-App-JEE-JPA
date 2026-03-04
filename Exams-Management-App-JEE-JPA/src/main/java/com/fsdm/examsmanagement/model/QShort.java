@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
  */
 public class QShort extends Questioner{
 
-    @OneToOne(mappedBy = "qshort",cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "qshort",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private QShortAnswer answer;
 
 

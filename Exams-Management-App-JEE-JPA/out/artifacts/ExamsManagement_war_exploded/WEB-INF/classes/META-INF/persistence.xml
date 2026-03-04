@@ -15,6 +15,7 @@
         <class>com.fsdm.examsmanagement.model.QShortAnswer</class>
         <class>com.fsdm.examsmanagement.model.ExamNote</class>
         <class>com.fsdm.examsmanagement.model.QFillInBlankAnswer</class>
+        <class>com.fsdm.examsmanagement.model.SuperAdmin</class>
 
         <properties>
             <property name="hibernate.show_sql" value="true"/>

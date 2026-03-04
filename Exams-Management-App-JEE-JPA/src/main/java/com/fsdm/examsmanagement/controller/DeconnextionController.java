@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -13,8 +14,12 @@ public class DeconnextionController extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request , HttpServletResponse response) throws ServletException, IOException {
-        request.getSession(false).invalidate();
-        request.getRequestDispatcher("/professeur-etudiant-choix-role.jsp").forward(request,response);
+        HttpSession session = request.getSession(false); // On récupère sans créer
+        if (session != null) {
+            session.invalidate(); // On détruit si elle existe
+        }
+        // Ensuite, on redirige vers la page de login
+        response.sendRedirect(request.getContextPath()+"/professeur-etudiant-choix-role.jsp");
     }
 
 }
